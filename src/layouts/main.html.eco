@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<header>
+	<h1>Doug Neiner</h1>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Doug Neiner&quot;</span><span class="p">,</span>
+  <span class="nx">employer</span><span class="o">:</span> <span class="s2">&quot;appendTo&quot;</span><span class="p">,</span>
+  <span class="nx">social</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;twitter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;facebook&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;google+&quot;</span>
+  <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+
+	<nav id="primary">
+		<ul id="site-menu">
+			<li id="nav-main"><a href="#">Main</a></li>
+			<li id="nav-coding" class="current">
+				<a href="#">Coding</a>
+				<ul>
+					<li><a href="#">Design</a></li>
+					<li><a href="#">Contextual</a></li>
+					<li><a href="#">jQuery</a></li>
+					<li><a href="#">Strategy</a></li>
+					<li><a href="#">Tools</a></li>
+				</ul>
+			</li>
+			<li id="nav-speaking"><a href="#">Speaking</a></li>
+			<li id="nav-learning"><a href="#">Learning</a></li>
+		</ul>
+	</nav>
+</header>
+<section id="content">
+	<%-@content%>
+
+	<footer id="site-footer">
+		Copyright &copy; 2012 by Doug Neiner. All rights reserved. Code examples licensed under a MIT license.<br>
+		Code highlighting and site accent colors from <a href="https://github.com/ChrisKempson/Tomorrow-Theme">Tomorrow Theme</a> by <a href="https://github.com/chriskempson">Chris Kempson</a>.
+	</footer>
+</section>

@@ -1,0 +1,153 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width">
+  <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles/boilerplate.css">
+  <link rel="stylesheet" href="styles/style.css">
+
+  <script src="js/libs/modernizr-2.5.2.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <header>
+    <h1>Doug Neiner</h1>
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Doug Neiner&quot;</span><span class="p">,</span>
+  <span class="nx">employer</span><span class="o">:</span> <span class="s2">&quot;appendTo&quot;</span><span class="p">,</span>
+  <span class="nx">social</span><span class="o">:</span> <span class="p">[</span>
+    <span class="s2">&quot;twitter&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;facebook&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;google+&quot;</span>
+  <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+
+    <nav id="primary">
+        <ul id="site-menu">
+            <li id="nav-main"><a href="#">Main</a></li>
+            <li id="nav-coding" class="current">
+                <a href="#">Coding</a>
+                <ul>
+                    <li><a href="#">Design</a></li>
+                    <li><a href="#">Contextual</a></li>
+                    <li><a href="#">jQuery</a></li>
+                    <li><a href="#">Strategy</a></li>
+                    <li><a href="#">Tools</a></li>
+                </ul>
+            </li>
+            <li id="nav-speaking"><a href="#">Speaking</a></li>
+            <li id="nav-learning"><a href="#">Learning</a></li>
+        </ul>
+    </nav>
+</header>
+<section id="content">
+    <h1>Using CSS Classes with JavaScript to Control Visual State</h1>
+
+<div class="post-meta">
+Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012 09:45:49 GMT-0600 (CST)</a>
+</div>
+
+<div class="post-content">
+<p>The magic that we need is to somehow interrupt the queue system. Thankfully, there is an API just for that and in the next section we will show how to use it.</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines'><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div><div class="highlight"><pre><span class="c1">// Define a special initializer for our dialog</span>
+<span class="kd">var</span> <span class="nx">contactDialog</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dfd</span><span class="p">;</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">dfd</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">dfd</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">d</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/parts&quot;</span><span class="p">,</span>
+                    <span class="nx">success</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">resolve</span><span class="p">,</span>
+                    <span class="nx">error</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">reject</span>
+                <span class="p">});</span>
+            <span class="p">}).</span><span class="nx">promise</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">dfd</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}());</span>
+
+<span class="c1">// Invoke it</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;This is a test&quot;</span> <span class="p">);</span>
+<span class="nx">contactDialog</span><span class="p">();</span>
+</pre></div>
+</div>
+
+<p>If you played with the example above you'll have noticed that if you interact with the menu really quickly side-to-side then the animations continue over and over and over again, even after you've moved off the menu completely! </p>
+
+<h2>Understanding the Problem</h2>
+
+<p>At the root of the problem is an animation queue that has gotten out of hand. jQuery keeps an internal queue to help it know what animation to run next. When you take an element and call one of the animation methods (<code>.animate()</code> , <code>.slideDown()</code>, <code>.slideUp()</code>, <code>.slideToggle()</code>, etc... ) what really happens is that effect gets added to the default "fx" animation queue that is attached to the element. As each effects completes jQuery will move on to the next effect in the queue until all animations are complete. </p>
+
+<p>The magic that we need is to somehow interrupt the queue system. Thankfully, there is an API just for that and in the next section we will show how to use it.</p>
+
+<div class='code-block code-lang-html'><div class='code-lines'><pre>1
+2
+3
+4</pre></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>My Title<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;p&gt;</span>My content<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+
+<div class='code-block code-lang-css'><div class='code-lines'><pre>1
+2</pre></div><div class="highlight"><pre><span class="nf">#container</span> <span class="p">{</span> <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
+<span class="nf">#container</span> <span class="nt">p</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">1em</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<p>At the root of the problem is an animation queue that has gotten out of hand. jQuery keeps an internal queue to help it know what animation to run next. When you take an element and call one of the animation methods (<code>.animate()</code> , <code>.slideDown()</code>, <code>.slideUp()</code>, <code>.slideToggle()</code>, etc... ) what really happens is that effect gets added to the default "fx" animation queue that is attached to the element. As each effects completes jQuery will move on to the next effect in the queue until all animations are complete. </p>
+
+<p>The magic that we need is to somehow interrupt the queue system. Thankfully, there is an API just for that and in the next section we will show how to use it.</p>
+</div>
+
+    <footer id="site-footer">
+        Copyright &copy; 2012 by Doug Neiner. All rights reserved. Code examples licensed under a MIT license.<br>
+        Code highlighting and site accent colors from <a href="https://github.com/ChrisKempson/Tomorrow-Theme">Tomorrow Theme</a> by <a href="https://github.com/chriskempson">Chris Kempson</a>.
+    </footer>
+</section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <script src="js/plugins.js"></script>
+  <script src="js/script.js"></script>
+
+  <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+</body>
+</html>

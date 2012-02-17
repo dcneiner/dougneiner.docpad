@@ -1,0 +1,28 @@
+{
+	"docpad": {
+		"enabledPlugins": {
+			"admin": false,
+			"authenticate": false,
+			"autoupdate": false,
+			"buildr": false,
+			"cleanurls": true,
+			"coffee": true,
+			"eco": true,
+			"haml": true,
+			"html2jade": false,
+			"jade": true,
+			"less": true,
+			"markdown": true,
+			"related": true,
+			"rest": false,
+			"roy": true,
+			"sass": true,
+			"stylus": true
+		},
+		"plugins": {
+			"coffee": {
+				"pygments": true
+			}
+		}
+	}
+}
