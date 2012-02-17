@@ -156,6 +156,8 @@ html {
 	height: 100%;
 }
 
+span.clear { display: none; }
+
 body {
 	position: relative;
 	min-height: 100%;
@@ -539,7 +541,7 @@ body > section:after {
 		bottom: auto;
 		width: auto;
 		background-image: url( "../img/bg-noise.png");
-		margin-right: 60px;
+		margin-right: 30px;
 		border-right: solid 1px #fff;
 		border-bottom: solid 1px #aaa;
 	}
@@ -548,10 +550,10 @@ body > section:after {
 		display: block;
 		content: "";
 		position: absolute;
-		width: 60px;
-		right: -61px;
+		width: 30px;
+		right: -31px;
 		top: 0;
-		bottom: 0;
+		bottom: -2px;
 		background-color: transparent;
 	  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(24,57,101,0.4)), to(rgba(24,57,101,0))); /* Saf4+, Chrome */
 	  background-image: -webkit-linear-gradient(left, rgba(24,57,101,0.4), rgba(24,57,101,0)); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -565,7 +567,17 @@ body > section:after {
 	body > section {
 		margin-left: 0;
 		border-top: solid 1px #eee;
-		
+		clear: left;
+		margin-right: 30px;
+	}
+	
+	body > section:after {
+		width: 30px;
+		right: -31px;
+	}
+	
+	body > section .code-block .highlight {
+		margin-right: -15px;
 	}
 	
 	body > header > a {
@@ -599,19 +611,40 @@ body > section:after {
 		color: #000;
 		margin: 10px 0 0 35px;
 		line-height: 1;
+		-webkit-border-top-left-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		padding-top: 60px;
+		position: relative;
+	}
+	
+	body > header > a h1:before {
+		display: block;
+		position: absolute;
+		top: 0;
+		content: "";
+		width: 50px;
+		height: 50px;
+		margin-right: 5px;
+		background: url("../img/doug-photo.png") center center;
+		-webkit-background-size: 70px 70px;
+		   -moz-background-size: 70px 70px;
+		    -ms-background-size: 70px 70px;
+		     -o-background-size: 70px 70px;
+		        background-size: 70px 70px;
+		border: solid 3px #aaa;
 	}
 	
 	body > header > div.highlight {
 		display: none;
 	}
 	
-	body > header {
-		overflow: hidden;
-	}
-	
 	body > header > div.highlight:after {
 		left: -184px;
 		top: 1px;
+	}
+	
+	body > header:after {
 	}
 	
 	body > header #primary {
@@ -659,6 +692,12 @@ body > section:after {
 	#nav-learning > a:after {
 		content: " *******/";
 	}
+	
+	.scrolled body > header > a  h1 {
+		opacity: 1.0;
+	}
+	
+	span.clear { display: block; height: 0; visibility: hidden; clear: left; }
 }
 
 @media all and (max-width: 515px) {
@@ -703,6 +742,22 @@ body > section:after {
 }
 
 @media all and (max-width: 415px) {
+	body > header > a h1 {
+		padding-top: 0;
+	}
+	body > header > a h1:before {
+		display: inline-block;
+		position: relative;
+		width: 30px;
+		height: 30px;
+		-webkit-background-size: 40px 40px;
+		   -moz-background-size: 40px 40px;
+		    -ms-background-size: 40px 40px;
+		     -o-background-size: 40px 40px;
+		        background-size: 40px 40px;
+		top: 4px;
+		left: -3px;
+	}
 	body > header > a {
 		width: auto;
 		float: none;

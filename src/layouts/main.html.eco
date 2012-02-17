@@ -32,6 +32,7 @@ layout: default
 			<li id="nav-learning"><a href="#">Learning</a></li>
 		</ul>
 	</nav>
+	<span class="clear"></span>
 </header>
 <section id="content">
 	<%-@content%>

@@ -72,6 +72,7 @@ pre{margin:0;padding:0}
 .highlight .vi{color:#3030b0}
 .highlight .il{color:#0000d0}
 html{background-image:url("../img/bg-tile.png");background-color:#4271ae;height:100%}
+span.clear{display:none}
 body{position:relative;min-height:100%}
 body > header{position:fixed;left:0;top:0;bottom:0;width:315px;background-color:#d6d6d6;border-right:solid 1px #aaa;padding:1px 0}
 body > header *{-webkit-transition:border-color linear 200ms,color linear 200ms,opacity linear 200ms;-moz-transition:border-color linear 200ms,color linear 200ms,opacity linear 200ms;-ms-transition:border-color linear 200ms,color linear 200ms,opacity linear 200ms;-o-transition:border-color linear 200ms,color linear 200ms,opacity linear 200ms;transition:border-color linear 200ms,color linear 200ms,opacity linear 200ms}
@@ -131,13 +132,15 @@ body > header .highlight{width:180px}
 body > header .highlight:after{top:-183px}
 body > header #site-menu{width:166px;margin-top:0}
 body > section{margin-left:201px}
-}@media all and (max-width: 750px){body > header{position:relative;bottom:auto;width:auto;background-image:url("../img/bg-noise.png");margin-right:60px;border-right:solid 1px #fff;border-bottom:solid 1px #aaa}
-body > header:after{display:block;content:"";position:absolute;width:60px;right:-61px;top:0;bottom:0;background-color:transparent;background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(24,57,101,0.40)),to(rgba(24,57,101,0.00)));background-image:-webkit-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-moz-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-ms-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-o-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:linear-gradient(to right,rgba(24,57,101,0.40),rgba(24,57,101,0.00));z-index:-1}
-body > section{margin-left:0;border-top:solid 1px #eee}
+}@media all and (max-width: 750px){body > header{position:relative;bottom:auto;width:auto;background-image:url("../img/bg-noise.png");margin-right:30px;border-right:solid 1px #fff;border-bottom:solid 1px #aaa}
+body > header:after{display:block;content:"";position:absolute;width:30px;right:-31px;top:0;bottom:-2px;background-color:transparent;background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(24,57,101,0.40)),to(rgba(24,57,101,0.00)));background-image:-webkit-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-moz-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-ms-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-o-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:linear-gradient(to right,rgba(24,57,101,0.40),rgba(24,57,101,0.00));z-index:-1}
+body > section{margin-left:0;border-top:solid 1px #eee;clear:left;margin-right:30px}
+body > section:after{width:30px;right:-31px}
+body > section .code-block .highlight{margin-right:-15px}
 body > header > a{float:left;-webkit-border-top-left-radius:0;-webkit-border-top-right-radius:0;-moz-border-radius:10px 0 0 10px;border-radius:10px 0 0 10px;text-indent:0;width:auto;height:auto;background:transparent;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;text-decoration:none;width:50%}
-body > header > a h1{-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0;-moz-border-radius:10px 0 0 10px;border-radius:10px 0 0 10px;background:transparent;text-indent:0;width:auto;height:auto;font-family:"MuseoSlab-500",Helvetica,Arial,sans-serif;font-size:4em;color:#000;margin:10px 0 0 35px;line-height:1}
+body > header > a h1{-webkit-border-bottom-left-radius:0;-webkit-border-bottom-right-radius:0;-moz-border-radius:10px 0 0 10px;border-radius:10px 0 0 10px;background:transparent;text-indent:0;width:auto;height:auto;font-family:"MuseoSlab-500",Helvetica,Arial,sans-serif;font-size:4em;color:#000;margin:10px 0 0 35px;line-height:1;-webkit-border-top-left-radius:0;-moz-border-radius:0;border-radius:0;padding-top:60px;position:relative}
+body > header > a h1:before{display:block;position:absolute;top:0;content:"";width:50px;height:50px;margin-right:5px;background:url("../img/doug-photo.png") center center;-webkit-background-size:70px 70px;-moz-background-size:70px 70px;-ms-background-size:70px 70px;-o-background-size:70px 70px;background-size:70px 70px;border:solid 3px #aaa}
 body > header > div.highlight{display:none}
-body > header{overflow:hidden}
 body > header > div.highlight:after{left:-184px;top:1px}
 body > header #primary{float:left;width:50%}
 body > header #site-menu{width:210px;margin-top:10px}
@@ -150,6 +153,8 @@ body > header #site-menu{width:210px;margin-top:10px}
 #nav-speaking > a:after{content:" *******/"}
 #nav-learning > a:before{content:"/******* "}
 #nav-learning > a:after{content:" *******/"}
+.scrolled body > header > a  h1{opacity:1}
+span.clear{display:block;height:0;visibility:hidden;clear:left}
 }@media all and (max-width: 515px){body > header{margin-right:5px;margin-left:5px;border-left:solid 1px #fff}
 body > section{margin-right:5px;margin-left:5px;border-left:solid 1px #fff}
 body > section .code-block .highlight{margin-right:0;-webkit-border-top-right-radius:0;-webkit-border-bottom-right-radius:0;-moz-border-radius:0;border-radius:0;padding-left:15px}
@@ -157,7 +162,9 @@ body > section .code-block .code-lines{display:none}
 body > header:after,body > section:after{display:none}
 body > header > a{width:40%;font-size:.7em}
 body > header > #primary{width:60%}
-}@media all and (max-width: 415px){body > header > a{width:auto;float:none;text-align:center}
+}@media all and (max-width: 415px){body > header > a h1{padding-top:0}
+body > header > a h1:before{display:inline-block;position:relative;width:30px;height:30px;-webkit-background-size:40px 40px;-moz-background-size:40px 40px;-ms-background-size:40px 40px;-o-background-size:40px 40px;background-size:40px 40px;top:4px;left:-3px}
+body > header > a{width:auto;float:none;text-align:center}
 body > header > a h1{margin-left:0}
 body > header > #primary{width:auto;float:none}
 }
