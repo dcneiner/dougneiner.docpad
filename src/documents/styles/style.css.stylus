@@ -86,6 +86,15 @@ pre {
 	font-size: 1em;
 	font-family: DejaVuSansMonoBook, monospace;
 }
+
+.highlight a {
+	text-decoration: none;
+}
+
+.highlight a:hover {
+	text-decoration: underline;
+}
+
 .highlight .c { color: $d_comment } /* Comment */
 .highlight .err { color: #F00000; background-color: #F0A0A0 } /* Error */
 .highlight .k { color: $d_purple; } /* Keyword */
@@ -182,19 +191,20 @@ body > header * {
 	        transition: border-color linear 200ms, color linear 200ms, opacity linear 200ms;
 }
 
-.scrolled body > header > .highlight {
+.scrolled body > header:not(:hover) > .highlight {
 	border-color: #aaa;
 }
-.scrolled body > header > .highlight pre span {
+.scrolled body > header:not(:hover) > .highlight pre span,
+.scrolled body > header:not(:hover) > .highlight pre a {
 	color: #aaa;
 }
 
-.scrolled body > header > a,
-.scrolled body > header > div.highlight {
+.scrolled body > header:not(:hover) > a,
+.scrolled body > header:not(:hover) > div.highlight {
 	opacity: 0.7;
 }
 
-.scrolled body > header > a  h1 {
+.scrolled body > header:not(:hover) > a  h1 {
 	opacity: 0;
 }
 
@@ -254,6 +264,11 @@ body > header .highlight {
 	-webkit-box-shadow: rgba(0,0,0,0.4) 0 1px 5px;
 	   -moz-box-shadow: rgba(0,0,0,0.4) 0 1px 5px;
 	        box-shadow: rgba(0,0,0,0.4) 0 1px 5px;
+}
+
+body > header .highlight pre {
+	position: relative;
+	z-index: 20;
 }
 
 body > header .highlight:after {
@@ -693,8 +708,12 @@ body > section:after {
 		content: " *******/";
 	}
 	
-	.scrolled body > header > a  h1 {
-		opacity: 1.0;
+	.scrolled body > header > a h1 {
+		opacity: 1.0 !important;
+	}
+	
+	.scrolled body > header > a {
+		opacity: 1.0 !important;
 	}
 	
 	span.clear { display: block; height: 0; visibility: hidden; clear: left; }
@@ -771,5 +790,31 @@ body > section:after {
 	body > header > #primary {
 		width: auto;
 		float: none;
+	}
+	
+	.code-block {
+		font-size: 0.8em;
+		margin-left: -11px;
+		margin-right: -11px;
+	}
+	
+	#content h1 {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	.post-meta {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	.post-content {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	#site-footer {
+		margin-left: 10px;
+		margin-right: 10px;
 	}
 }
