@@ -27,6 +27,8 @@ $l_aqua =         #3e999f
 $l_blue =         #4271ae
 $l_purple =       #8959a8
 
+$main = $l_blue
+
 pre {
 	margin: 0;
 	padding: 0;
@@ -45,7 +47,7 @@ pre {
 }
 
 .code-block.code-lang-html {
-	border-color: $d_yellow;
+	border-color: $d_orange;
 }
 
 .code-block.code-lang-css {
@@ -66,7 +68,10 @@ pre {
 }
 
 .code-lines {
-	background: $d_selection; color: $d_foreground; text-shadow: #000 0 1px 0;
+	background: $d_selection;
+	color: $d_foreground;
+	color: #777;
+	text-shadow: #000 0 1px 0;
 	font-size: 0.8em;
 	padding: 10px 10px 10px 15px;
 	position: absolute;
@@ -147,6 +152,7 @@ pre {
 
 html {
 	background-image: url("../img/bg-tile.png");
+	background-color: $main;
 	height: 100%;
 }
 
@@ -156,7 +162,7 @@ body {
 }
 
 body > header {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	bottom: 0;
@@ -164,6 +170,30 @@ body > header {
 	background-color: #d6d6d6;
 	border-right: solid 1px #aaa;
 	padding: 1px 0;
+}
+
+body > header * {
+	-webkit-transition: all linear 200ms;
+	-moz-transition: all linear 200ms;
+	-ms-transition: all linear 200ms;
+	-o-transition: all linear 200ms;
+	transition: all linear 200ms;
+}
+
+.scrolled body > header > .highlight {
+	border-top-color: #aaa;
+}
+.scrolled body > header > .highlight pre span {
+	color: #aaa;
+}
+
+.scrolled body > header > a,
+.scrolled body > header > div.highlight {
+	opacity: 0.7;
+}
+
+.scrolled body > header > a  h1 {
+	opacity: 0;
 }
 
 .multiplebgs body > header {
@@ -175,9 +205,10 @@ body > header {
   background-image:           linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url("../img/bg-noise.png");
 }
 
-body > header h1 {
+body > header > a {
+	display: block;
+	position: relative;
 	overflow: hidden;
-	text-indent: -9999px;
 	width: 204px;
 	height: 195px;
 	margin: 35px auto 0 auto;
@@ -186,10 +217,23 @@ body > header h1 {
 	-webkit-border-top-right-radius: 10px;
 	-moz-border-radius: 10px 10px 0 0;
 	border-radius: 10px 10px 0 0;
-	background: url("../img/doug-photo.png") no-repeat;
+	background: url("../img/doug-bw-photo.png") center center no-repeat;
 	-webkit-box-shadow: rgba(0,0,0,0.3) 0 0 3px;
 	   -moz-box-shadow: rgba(0,0,0,0.3) 0 0 3px;
 	        box-shadow: rgba(0,0,0,0.3) 0 0 3px;
+}
+
+body > header > a h1 {
+	overflow: hidden;
+	text-indent: -9999px;
+	width: 204px;
+	height: 195px;
+	margin: 0;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius: 10px 10px 0 0;
+	border-radius: 10px 10px 0 0;
+	background: url("../img/doug-photo.png") center center no-repeat;
 }
 
 body > header .highlight {
@@ -248,12 +292,12 @@ body > section:after {
 	top: 0;
 	bottom: 0;
 	background-color: transparent;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(60,30,80,0.4)), to(rgba(60,30,80,0))); /* Saf4+, Chrome */
-  background-image: -webkit-linear-gradient(left, rgba(60,30,80,0.4), rgba(60,30,80,0)); /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image:    -moz-linear-gradient(left, rgba(60,30,80,0.4), rgba(60,30,80,0)); /* FF3.6 */
-  background-image:     -ms-linear-gradient(left, rgba(60,30,80,0.4), rgba(60,30,80,0)); /* IE10 */
-  background-image:      -o-linear-gradient(left, rgba(60,30,80,0.4), rgba(60,30,80,0)); /* Opera 11.10+ */
-  background-image:         linear-gradient(to right, rgba(60,30,80,0.4), rgba(60,30,80,0));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(24,57,101,0.4)), to(rgba(24,57,101,0))); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(left, rgba(24,57,101,0.4), rgba(24,57,101,0)); /* Chrome 10+, Saf5.1+, iOS 5+ */
+  background-image:    -moz-linear-gradient(left, rgba(24,57,101,0.4), rgba(24,57,101,0)); /* FF3.6 */
+  background-image:     -ms-linear-gradient(left, rgba(24,57,101,0.4), rgba(24,57,101,0)); /* IE10 */
+  background-image:      -o-linear-gradient(left, rgba(24,57,101,0.4), rgba(24,57,101,0)); /* Opera 11.10+ */
+  background-image:         linear-gradient(to right, rgba(24,57,101,0.4), rgba(24,57,101,0));
   z-index: -1;
 }
 
@@ -279,9 +323,14 @@ body > section:after {
 }
 
 #site-menu {
-	font-family: "Dejavu Sans Mono", monospace;
+	font-family: DejaVuSansMonoBook, monospace;
 	width: 200px;
 	margin: 20px auto;
+}
+
+#site-menu > li > a {
+	display: block;
+	white-space: nowrap;
 }
 
 #nav-main > a:before {
@@ -345,10 +394,11 @@ body > section:after {
 #content h1 {
 	font-family: "MuseoSlab-500", Helvetica, Arial, sans-serif;
 	font-size: 2.5em;
-	color: $l_purple;
+	color: $main;
 	line-height: 1;
 	padding: 35px 35px 20px 35px;
 	margin: 0;
+	font-weight: normal;
 }
 
 .post-meta {
@@ -388,7 +438,8 @@ body > section:after {
 	color: $l_blue;
 	line-height: 1;
 	padding: 20px 0 10px 0;
-	margin: 0;	
+	margin: 0;
+	font-weight: normal;
 }
 
 .post-content li code,
@@ -408,4 +459,40 @@ body > section:after {
 	margin: 20px 35px 10px 35px;
 	color: #666;
 	font-size: 0.8em;
+}
+
+
+@media all and (max-height: 700px) {
+	body > header {
+		width: 200px;
+		font-size: 0.85em
+	}
+	
+	body > header > a {
+		width: 180px;
+		height: 180px;
+		margin-top: 10px;
+	}
+	
+	body > header > a h1  {
+		width: 180px;
+		height: 180px;
+	}
+	
+	body > header .highlight {
+		width: 180px;
+	}
+	
+	body > header .highlight:after {
+		top: -183px;
+	}
+	
+	body > header #site-menu {
+		width: 166px;
+		margin-top: 0;
+	}
+	
+	body > section { 
+		margin-left: 201px;
+	}
 }

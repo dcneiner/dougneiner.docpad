@@ -4,7 +4,7 @@ layout: main
 <h1><%=@document.title%></h1>
 
 <div class="post-meta">
-Filed in <a><%=@document.category%></a> &bull; Published on <a><%= @document.date %></a>
+Filed in <a><%=@document.category%></a> &bull; Published on <a><%= @document.date.toDateString() %></a>
 </div>
 
 <div class="post-content">
