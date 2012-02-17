@@ -4,7 +4,7 @@ title: Using CSS Classes with JavaScript to Control Visual State
 category: Strategy
 ---
 
-The magic that we need is to somehow interrupt the queue system. Thankfully, there is an API just for that and in the next section we will show how to use it.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 
 ```javascript
@@ -30,14 +30,13 @@ console.log( "This is a test" );
 contactDialog();
 ```
 
-If you played with the example above you'll have noticed that if you interact with the menu really quickly side-to-side then the animations continue over and over and over again, even after you've moved off the menu completely! 
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum! 
 
 ## Understanding the Problem
 
-At the root of the problem is an animation queue that has gotten out of hand. jQuery keeps an internal queue to help it know what animation to run next. When you take an element and call one of the animation methods (`.animate()` , `.slideDown()`, `.slideUp()`, `.slideToggle()`, etc... ) what really happens is that effect gets added to the default "fx" animation queue that is attached to the element. As each effects completes jQuery will move on to the next effect in the queue until all animations are complete. 
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis `.nostrud()`, `.exercitation()` and `.ullamco()` laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-The magic that we need is to somehow interrupt the queue system. Thankfully, there is an API just for that and in the next section we will show how to use it.
-
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
 
 ```html
 <div id="container">
@@ -52,6 +51,4 @@ The magic that we need is to somehow interrupt the queue system. Thankfully, the
 #container p { font-size: 1em; }
 ```
 
-At the root of the problem is an animation queue that has gotten out of hand. jQuery keeps an internal queue to help it know what animation to run next. When you take an element and call one of the animation methods (`.animate()` , `.slideDown()`, `.slideUp()`, `.slideToggle()`, etc... ) what really happens is that effect gets added to the default "fx" animation queue that is attached to the element. As each effects completes jQuery will move on to the next effect in the queue until all animations are complete. 
-
-The magic that we need is to somehow interrupt the queue system. Thankfully, there is an API just for that and in the next section we will show how to use it.
+Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
