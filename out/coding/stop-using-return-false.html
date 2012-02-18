@@ -57,11 +57,29 @@
     <h1>Stop (Mis)Using Return False</h1>
 
 <div class="post-meta">
-Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
+Filed in <a>Practices</a> &bull; Published on <a>Mon Sep 20 2010</a>
 </div>
 
 <div class="post-content">
+<p>Probably one of the first topics covered when you get started learning about jQuery events is the concept of canceling the browser’s default behavior. For instance, a beginner click tutorial may include this:</p>
 
+<div class='code-block code-lang-javascript'><div class='code-lines'><pre>1
+2
+3
+4</pre></div><div class="highlight"><pre><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="p">.</span><span class="nx">toggle</span><span class="p">();</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Prevent browser from visiting </span>
+<span class="p">});</span>
+</pre></div>
+</div>
+
+<p>This function toggles the hiding and displaying of <code>#mydiv</code>, then cancels the browser’s default behavior of visiting the href of the anchor tag.</p>
+
+<p>It is in these very first examples that bad habits are formed as users continue to use <code>return false;</code> whenever they want to cancel the default browser action. I am going to cover two very important topics in this article relating to the canceling of browser events.</p>
+
+<p><a href="http://fuelyourcoding.com/jquery-events-stop-misusing-return-false/">Continue reading at Fuel Your Coding…</a></p>
+
+<p><em>This article was written for and published at Fuel Your Coding, on September 20, 2010. The material covered still applies to jQuery code written today.</em></p>
 </div>
 
     <footer id="site-footer">

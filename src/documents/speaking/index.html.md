@@ -39,6 +39,6 @@ Here are a few reviews from people who have attended my talks:
 
 <h2 id="videos">Videos</h2>
 
-The following video is from [Front End Design Conference](http://frontenddesignconf.com) 2011 in St. Petersburg, Florida. I was speaking on jQuery Nuts, Bolts and Bling. The slides (below the video) are [available on Speaker Deck](http://speakerdeck.com/u/dougneiner/p/jquery-nuts-bolts-and-bling), and the [code is available on Github](https://github.com/dcneiner/jQuery-Bling).
+The following video is from [Front End Design Conference](http://frontenddesignconf.com) 2011 in St. Petersburg, Florida. I was speaking on jQuery Nuts, Bolts and Bling. The slides are [available on Speaker Deck](http://speakerdeck.com/u/dougneiner/p/jquery-nuts-bolts-and-bling), and the [code is available on Github](https://github.com/dcneiner/jQuery-Bling).
 
 <iframe src="http://player.vimeo.com/video/29066808" width="400" height="300" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
