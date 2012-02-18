@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title></title>
+  <title>Using CSS Classes with JavaScript to Control Visual State | Doug Neiner</title>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
 
   <script src="/js/libs/modernizr-2.5.2.min.js"></script>
 </head>
-<body>
+<body class="page-coding-using-css-classes-for-states">
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
   <header>
@@ -34,19 +34,21 @@
 
     <nav id="primary">
         <ul id="site-menu">
-            <li id="nav-main"><a href="/">Main</a></li>
+            <li id="nav-main" ><a href="/">Main</a></li>
             <li id="nav-coding" class="current">
-                <a href="#">Coding</a>
-                <ul>
+                <a href="/coding/">Coding</a>
+                <!--<ul>
                     <li><a href="#">Design</a></li>
                     <li><a href="#">Contextual</a></li>
                     <li><a href="#">jQuery</a></li>
                     <li><a href="#">Strategy</a></li>
                     <li><a href="#">Tools</a></li>
-                </ul>
+                </ul>-->
             </li>
-            <li id="nav-speaking"><a href="#">Speaking</a></li>
-            <li id="nav-learning"><a href="#">Learning</a></li>
+            <li id="nav-speaking" ><a href="/speaking/">Speaking</a>
+                
+            </li>
+            <li id="nav-learning" ><a href="/learning/">Learning</a></li>
         </ul>
     </nav>
     <span class="clear"></span>
@@ -80,10 +82,26 @@ Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
 17
 18
 19
-20</pre></div><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;container&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Title</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
-    <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">content</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-<span class="o">&lt;</span><span class="err">/div&gt;</span>
+20</pre></div><div class="highlight"><pre><span class="c1">// Define a special initializer for our dialog</span>
+<span class="kd">var</span> <span class="nx">contactDialog</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">dfd</span><span class="p">;</span>
+    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">dfd</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">dfd</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">d</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/parts&quot;</span><span class="p">,</span>
+                    <span class="nx">success</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">resolve</span><span class="p">,</span>
+                    <span class="nx">error</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">reject</span>
+                <span class="p">});</span>
+            <span class="p">}).</span><span class="nx">promise</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">dfd</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}());</span>
+
+<span class="c1">// Invoke it</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;This is a test&quot;</span> <span class="p">);</span>
+<span class="nx">contactDialog</span><span class="p">();</span>
 </pre></div>
 </div>
 
@@ -98,8 +116,10 @@ Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
 <div class='code-block code-lang-html'><div class='code-lines'><pre>1
 2
 3
-4</pre></div><div class="highlight"><pre>#container { margin-bottom: 10px; }
-#container p { font-size: 1em; }
+4</pre></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>My Title<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;p&gt;</span>My content<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
 </pre></div>
 </div>
 
@@ -121,8 +141,8 @@ Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
+  <script src="/js/plugins.js"></script>
+  <script src="/js/script.js"></script>
 
   <script>
     var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];

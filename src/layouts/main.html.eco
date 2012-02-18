@@ -17,19 +17,27 @@ layout: default
 
 	<nav id="primary">
 		<ul id="site-menu">
-			<li id="nav-main"><a href="/">Main</a></li>
-			<li id="nav-coding" class="current">
-				<a href="#">Coding</a>
-				<ul>
+			<li id="nav-main" <%- if @document.slug.indexOf( "index" ) is 0 then 'class="current"' else '' %>><a href="/">Main</a></li>
+			<li id="nav-coding" <%- if @document.slug.indexOf( "coding" ) is 0 then 'class="current"' else '' %>>
+				<a href="/coding/">Coding</a>
+				<!--<ul>
 					<li><a href="#">Design</a></li>
 					<li><a href="#">Contextual</a></li>
 					<li><a href="#">jQuery</a></li>
 					<li><a href="#">Strategy</a></li>
 					<li><a href="#">Tools</a></li>
-				</ul>
+				</ul>-->
 			</li>
-			<li id="nav-speaking"><a href="#">Speaking</a></li>
-			<li id="nav-learning"><a href="#">Learning</a></li>
+			<li id="nav-speaking" <%- if @document.slug.indexOf( "speaking" ) is 0 then 'class="current"' else '' %>><a href="/speaking/">Speaking</a>
+				<% if @document.slug.indexOf( "speaking" ) is 0 : %>
+				<ul>
+					<li><a href="#reviews">Reviews</a></li>
+					<li><a href="#slides">Slides</a></li>
+					<li><a href="#videos">Videos</a></li>
+				</ul>
+				<% end %>
+			</li>
+			<li id="nav-learning" <%- if @document.slug.indexOf( "learning" ) is 0 then 'class="current"' else '' %>><a href="/learning/">Learning</a></li>
 		</ul>
 	</nav>
 	<span class="clear"></span>

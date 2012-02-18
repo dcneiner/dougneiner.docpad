@@ -19,7 +19,6 @@ module.exports = (BasePlugin) ->
 					"<p>ZZZBLOCKZZZ</p>"
 				
 				finalize = () ->
-					console.log file.content
 					file.content = file.content.replace rFormatBlocksDiv, (a, b, lang, html) ->
 						processed.shift()
 					next()

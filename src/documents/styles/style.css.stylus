@@ -170,6 +170,7 @@ span.clear { display: none; }
 body {
 	position: relative;
 	min-height: 100%;
+	height: 100%;
 }
 
 body > header {
@@ -299,6 +300,7 @@ body > section {
 	border-right: solid 1px #fff;
 	max-width: 870px;
 	position: relative;
+	min-height: 100%;
 }
 
 body > section:after {
@@ -445,8 +447,35 @@ body > section:after {
 	line-height: 1.6;
 }
 
+.post-intro {
+	color: $l_foreground;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	border-bottom: solid 1px #aaa;
+}
+
+#site-footer a,
+.post-content a {
+	color: $l_purple;
+}
+
+#site-footer a:hover,
+.post-content a:hover {
+	color: $l_green;
+}
+
 .post-content p {
 	margin: 0 0 15px 0;
+}
+
+.post-content blockquote p:before {
+	content: "\201c";
+	font-size: 1.3em;
+	margin-left: -15px;
+	display: inline-block;
+	width: 15px;
+	color: #777;
 }
 
 .post-content h2,
@@ -479,6 +508,35 @@ body > section:after {
 	font-size: 0.8em;
 }
 
+
+.article-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.article-list a {
+	text-decoration: none;
+	color: $l_blue;
+	font-family: "MuseoSlab-500", Helvetica, Arial, sans-serif;
+	font-size: 1.2em;
+}
+
+.article-list a:hover {
+	color: #000;
+}
+
+.article-list li {
+	margin-bottom: 10px;
+}
+
+.article-list a small {
+	display: block;
+	font-family: 'Molengo', sans-serif;
+	font-size: 0.8em;
+	color: $l_foreground;
+	margin-top: -7px;
+}
 
 @media all and (max-height: 700px) {
 	body > header {

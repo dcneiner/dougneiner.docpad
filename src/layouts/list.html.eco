@@ -1,0 +1,22 @@
+---
+layout: main
+---
+
+<h1><%-@document.title %></h1>
+<div class="post-content">
+	<div class="post-intro">
+		<%-@content%>
+	</div>
+	<ul class="article-list">
+	<% for document in @documents: %>
+		<% if document.url.indexOf( @document.list_slug || "invalid" ) == 1 and document.slug != @document.slug: %>
+		<li typeof="sioc:Page" about="<%= document.url %>">
+			<a href="<%= document.url %>" property="dc:title">
+				<%= document.title %>
+				<small><% if document.category: %>Filed in <%= document.category %> &bull;<% end %> Published on <%= document.date.toDateString() %></small>
+			</a>
+		</li>
+		<% end %>
+	<% end %>
+	</ul>
+</div>

@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Main | Doug Neiner</title>
+  <title>Stop (Mis)Using Return False | Doug Neiner</title>
   <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,7 @@
 
   <script src="/js/libs/modernizr-2.5.2.min.js"></script>
 </head>
-<body class="page-index">
+<body class="page-coding-stop-using-return-false">
   <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
   <header>
@@ -34,8 +34,8 @@
 
     <nav id="primary">
         <ul id="site-menu">
-            <li id="nav-main" class="current"><a href="/">Main</a></li>
-            <li id="nav-coding" >
+            <li id="nav-main" ><a href="/">Main</a></li>
+            <li id="nav-coding" class="current">
                 <a href="/coding/">Coding</a>
                 <!--<ul>
                     <li><a href="#">Design</a></li>
@@ -54,66 +54,14 @@
     <span class="clear"></span>
 </header>
 <section id="content">
-    <h1>Main</h1>
+    <h1>Stop (Mis)Using Return False</h1>
 
 <div class="post-meta">
-Filed in <a></a> &bull; Published on <a>Fri Feb 17 2012</a>
+Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
 </div>
 
 <div class="post-content">
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-<div class='code-block code-lang-javascript'><div class='code-lines'><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;container&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Title</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
-    <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">content</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-<span class="o">&lt;</span><span class="err">/div&gt;</span>
-</pre></div>
-</div>
-
-<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum! </p>
-
-<h2>Understanding the Problem</h2>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <code>.nostrud()</code>, <code>.exercitation()</code> and <code>.ullamco()</code> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-
-<div class='code-block code-lang-html'><div class='code-lines'><pre>1
-2
-3
-4</pre></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;h2&gt;</span>My Title<span class="nt">&lt;/h2&gt;</span>
-    <span class="nt">&lt;p&gt;</span>My content<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</pre></div>
-</div>
-
-<div class='code-block code-lang-css'><div class='code-lines'><pre>1
-2</pre></div><div class="highlight"><pre><span class="nf">#container</span> <span class="p">{</span> <span class="k">margin-bottom</span><span class="o">:</span> <span class="m">10px</span><span class="p">;</span> <span class="p">}</span>
-<span class="nf">#container</span> <span class="nt">p</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span> <span class="m">1em</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-</div>
-
-<p>Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 
     <footer id="site-footer">

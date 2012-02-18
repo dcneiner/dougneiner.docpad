@@ -3,7 +3,7 @@
     <title>Doug Neiner</title>
     <link href="http://code.dougneiner.com/atom.xml" rel="self"/>
     <link href="http://code.dougneiner.com"/>
-    <updated>2012-02-18T00:14:45Z</updated>
+    <updated>2012-02-18T04:38:37Z</updated>
     <id>http://code.dougneiner.com</id>
     <author>
         <name>Doug Neiner</name>
@@ -14,61 +14,11 @@
         
     
         
-            <entry>
-                <title>Using CSS Classes with JavaScript to Control Visual State</title>
-                <link href="http://code.dougneiner.com/posts/using-css-classes-for-states.html"/>
-                <updated>2012-02-17T23:03:52Z</updated>
-                <id>http://code.dougneiner.com/posts/using-css-classes-for-states.html</id>
-                <content type="html">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-```javascript
-// Define a special initializer for our dialog
-var contactDialog = (function () {
-    var dfd;
-    return function () {
-        if ( !dfd ) {
-            dfd = $.Deferred( function ( d ) {
-                $.ajax({
-                    url: &quot;/parts&quot;,
-                    success: d.resolve,
-                    error: d.reject
-                });
-            }).promise();
-        }
-        return dfd;
-    }
-}());
-
-// Invoke it
-console.log( &quot;This is a test&quot; );
-contactDialog();
-```
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum! 
-
-## Understanding the Problem
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis `.nostrud()`, `.exercitation()` and `.ullamco()` laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-
-```html
-&lt;div id=&quot;container&quot;&gt;
-    &lt;h2&gt;My Title&lt;/h2&gt;
-    &lt;p&gt;My content&lt;/p&gt;
-&lt;/div&gt;
-```
-
-
-```css
-#container { margin-bottom: 10px; }
-#container p { font-size: 1em; }
-```
-
-Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</content>
-            </entry>
+    
+        
+    
+        
+    
         
     
         
