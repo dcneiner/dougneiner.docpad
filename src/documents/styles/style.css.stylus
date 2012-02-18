@@ -229,7 +229,7 @@ body > header > a {
 	-webkit-border-top-right-radius: 10px;
 	-moz-border-radius: 10px 10px 0 0;
 	border-radius: 10px 10px 0 0;
-	background: url("../img/doug-bw-photo.png") center center no-repeat;
+	background: url("../img/doug-bw-photo.jpg") center center no-repeat;
 	-webkit-box-shadow: rgba(0,0,0,0.3) 0 0 3px;
 	   -moz-box-shadow: rgba(0,0,0,0.3) 0 0 3px;
 	        box-shadow: rgba(0,0,0,0.3) 0 0 3px;
@@ -245,7 +245,7 @@ body > header > a h1 {
 	-webkit-border-top-right-radius: 10px;
 	-moz-border-radius: 10px 10px 0 0;
 	border-radius: 10px 10px 0 0;
-	background: url("../img/doug-photo.png") center center no-repeat;
+	background: url("../img/doug-photo.jpg") center center no-repeat;
 }
 
 body > header .highlight {
@@ -641,7 +641,7 @@ body > section:after {
 		width: 50px;
 		height: 50px;
 		margin-right: 5px;
-		background: url("../img/doug-photo.png") center center;
+		background: url("../img/doug-photo.jpg") center center;
 		-webkit-background-size: 70px 70px;
 		   -moz-background-size: 70px 70px;
 		    -ms-background-size: 70px 70px;

@@ -3,7 +3,7 @@ layout: default
 ---
 
 <header>
-	<a href="index.html"><h1>Doug Neiner</h1></a>
+	<a href="/"><h1>Doug Neiner</h1></a>
 <div class="highlight"><pre><span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Doug Neiner&quot;</span><span class="p">,</span>
   <span class="nx">employer</span><span class="o">:</span> <a href="http://appendto.com" class="s2">&quot;appendTo&quot;</a><span class="p">,</span>
@@ -17,7 +17,7 @@ layout: default
 
 	<nav id="primary">
 		<ul id="site-menu">
-			<li id="nav-main"><a href="#">Main</a></li>
+			<li id="nav-main"><a href="/">Main</a></li>
 			<li id="nav-coding" class="current">
 				<a href="#">Coding</a>
 				<ul>

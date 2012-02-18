@@ -80,26 +80,10 @@ Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
 17
 18
 19
-20</pre></div><div class="highlight"><pre><span class="c1">// Define a special initializer for our dialog</span>
-<span class="kd">var</span> <span class="nx">contactDialog</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">dfd</span><span class="p">;</span>
-    <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">dfd</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="nx">dfd</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">(</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">d</span> <span class="p">)</span> <span class="p">{</span>
-                <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-                    <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;/parts&quot;</span><span class="p">,</span>
-                    <span class="nx">success</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">resolve</span><span class="p">,</span>
-                    <span class="nx">error</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">reject</span>
-                <span class="p">});</span>
-            <span class="p">}).</span><span class="nx">promise</span><span class="p">();</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nx">dfd</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}());</span>
-
-<span class="c1">// Invoke it</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;This is a test&quot;</span> <span class="p">);</span>
-<span class="nx">contactDialog</span><span class="p">();</span>
+20</pre></div><div class="highlight"><pre><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;container&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">Title</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
+    <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="nx">My</span> <span class="nx">content</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+<span class="o">&lt;</span><span class="err">/div&gt;</span>
 </pre></div>
 </div>
 
@@ -114,10 +98,8 @@ Filed in <a>Strategy</a> &bull; Published on <a>Fri Feb 17 2012</a>
 <div class='code-block code-lang-html'><div class='code-lines'><pre>1
 2
 3
-4</pre></div><div class="highlight"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;h2&gt;</span>My Title<span class="nt">&lt;/h2&gt;</span>
-    <span class="nt">&lt;p&gt;</span>My content<span class="nt">&lt;/p&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+4</pre></div><div class="highlight"><pre>#container { margin-bottom: 10px; }
+#container p { font-size: 1em; }
 </pre></div>
 </div>
 
