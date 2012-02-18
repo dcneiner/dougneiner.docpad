@@ -10,11 +10,20 @@ layout: main
 	<ul class="article-list">
 	<% for document in @documents: %>
 		<% if document.url.indexOf( @document.list_slug || "invalid" ) == 1 and document.slug != @document.slug: %>
-		<li typeof="sioc:Page" about="<%= document.url %>">
-			<a href="<%= document.url %>" property="dc:title">
+		<li typeof="sioc:Page" about="<%= document.url %>" class="post-type-<%= if document.link then "link" else "article" %>" >
+			<% if document.link:%>
+			<p><a href="<%= document.link %>" class="primary-link" property="dc:title">
+				<%= document.title %></a>
+				<small><% if document.category: %>Filed in <strong><%= document.category %></strong> &bull;<% end %> Shared on <a href="<%= document.url %>"><%= document.date.toDateString() %></a></small>
+			</p>
+			<%- document.contentRenderedWithoutLayouts %>
+			<% else: %>
+			<p><a href="<%= document.url %>" class="primary-link" property="dc:title">
 				<%= document.title %>
-				<small><% if document.category: %>Filed in <%= document.category %> &bull;<% end %> Published on <%= document.date.toDateString() %></small>
 			</a>
+			<small><% if document.category: %>Filed in <strong><%= document.category %></strong> &bull;<% end %> Published on <a href="<%= document.url %>"><%= document.date.toDateString() %></a></small></p>
+			<p><%= document.excerpt %></p>
+			<% end %>
 		</li>
 		<% end %>
 	<% end %>

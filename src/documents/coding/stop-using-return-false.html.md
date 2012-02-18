@@ -3,6 +3,7 @@ layout: post
 title: Stop (Mis)Using Return False
 category: Practices
 date: 1284958800000
+excerpt: Probably one of the first topics covered when you get started learning about jQuery events is the concept of canceling the browser’s default behavior.
 ---
 Probably one of the first topics covered when you get started learning about jQuery events is the concept of canceling the browser’s default behavior. For instance, a beginner click tutorial may include this:
 

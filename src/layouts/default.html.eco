@@ -11,9 +11,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='http://fonts.googleapis.com/css?family=Molengo' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="http://get.pictos.cc/fonts/841/2" type="text/css">
   <link rel="stylesheet" href="/styles/boilerplate.css">
   <link rel="stylesheet" href="/styles/style.css">
-
   <script src="/js/libs/modernizr-2.5.2.min.js"></script>
 </head>
 <body class="page-<%= @document.slug %>">

@@ -3,7 +3,7 @@
     <title>Doug Neiner</title>
     <link href="http://code.dougneiner.com/atom.xml" rel="self"/>
     <link href="http://code.dougneiner.com"/>
-    <updated>2012-02-18T19:47:08Z</updated>
+    <updated>2012-02-18T21:39:22Z</updated>
     <id>http://code.dougneiner.com</id>
     <author>
         <name>Doug Neiner</name>
@@ -24,9 +24,56 @@
         
     
         
+            <entry>
+                <title>Coding</title>
+                <link href="http://code.dougneiner.com/coding/index.html"/>
+                <updated>2012-02-18T03:31:51Z</updated>
+                <id>http://code.dougneiner.com/coding/index.html</id>
+                <content type="html"><p>This is the section where I get my geek on and share everything from code strategies to specific language how-to. This section may have articles touching on any aspect of web development, including HTML markup <em>(yeah, I know its not code)</em>, CSS <em>(also not code)</em>, jQuery/JavaScript, PHP, Ruby, Node.js and Erlang (If I ever get around to learning it!).</p></content>
+            </entry>
+        
     
         
     
+        
+    
+        
+            <entry>
+                <title>Stop (Mis)Using Return False</title>
+                <link href="http://code.dougneiner.com/coding/stop-using-return-false.html"/>
+                <updated>2010-09-20T05:00:00Z</updated>
+                <id>http://code.dougneiner.com/coding/stop-using-return-false.html</id>
+                <content type="html"><p>Probably one of the first topics covered when you get started learning about jQuery events is the concept of canceling the browser’s default behavior. For instance, a beginner click tutorial may include this:</p>
+
+<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a.toggle&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mydiv&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Prevent browser from visiting `#`</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+
+<p>This function toggles the hiding and displaying of <code>#mydiv</code>, then cancels the browser’s default behavior of visiting the href of the anchor tag.</p>
+
+<p>It is in these very first examples that bad habits are formed as users continue to use <code>return false;</code> whenever they want to cancel the default browser action. I am going to cover two very important topics in this article relating to the canceling of browser events.</p>
+
+<p><a href="http://fuelyourcoding.com/jquery-events-stop-misusing-return-false/">Continue reading at Fuel Your Coding…</a></p>
+
+<p><em>This article was written for and published at Fuel Your Coding, on September 20, 2010. The material covered still applies to jQuery code written today.</em></p></content>
+            </entry>
+        
+    
+        
+            <entry>
+                <title>Introduction to Stateful Plugins and the Widget Factory</title>
+                <link href="http://code.dougneiner.com/coding/introduction-to-stateful-widgets.html"/>
+                <updated>2010-05-21T05:00:00Z</updated>
+                <id>http://code.dougneiner.com/coding/introduction-to-stateful-widgets.html</id>
+                <content type="html"><p>The jQuery UI Widget Factory is a separate component of the <a href="http://jqueryui.com">jQuery UI</a> Library that provides an easy, object oriented way to create stateful jQuery plugins. Plugins created using the Widget Factory can be simple or very robust as evidenced by the official jQuery UI widgets, each of which are built on top of the Widget Factory. This article will first look briefly at why you might want to use the Widget Factory, then present an in depth walkthrough of creating a stateful plugin using the Factory.</p>
+
+<p><a href="http://msdn.microsoft.com/en-us/scriptjunkie/ff706600.aspx">Continue reading at Script Junkie…</a></p>
+
+<p><em>This article was written for and published at Script Junkie, on May 21, 2010. This article is current for jQuery UI 1.8, though 1.9 will bring a number of changes when released.</em></p></content>
+            </entry>
         
     
 </feed>

@@ -1,0 +1,49 @@
+---
+layout: main
+title: Welcome
+---
+
+<h1><%-@document.title %></h1>
+
+<% listing = ( slugs, limit ) => %>
+	<% _limit = 0 %>
+	
+	<% for document in @documents: %>
+		<% if document.slug.split( '-' ).shift() in slugs and document.slug.indexOf( 'index' ) == -1: %>
+		<% _limit = _limit + 1 %>
+		<% if _limit <= limit: %>
+		<li typeof="sioc:Page" about="<%= document.url %>" class="post-type-<%= if document.link then "link" else "article" %>" >
+			<% if document.link:%>
+			<p><a href="<%= document.link %>" class="primary-link" property="dc:title">
+				<%= document.title %></a>
+				<small><% if document.category: %>Filed in <strong><%= document.category %></strong> &bull;<% end %> Shared on <a href="<%= document.url %>"><%= document.date.toDateString() %></a></small>
+			</p>
+			<%- document.contentRenderedWithoutLayouts %>
+			<% else: %>
+			<p><a href="<%= document.url %>" class="primary-link" property="dc:title">
+				<%= document.title %>
+			</a>
+			<small><% if document.category: %>Filed in <strong><%= document.category %></strong> &bull;<% end %> Published on <a href="<%= document.url %>"><%= document.date.toDateString() %></a></small></p>
+			<p><%= document.excerpt %></p>
+			<% end %>
+		</li>
+		<% end %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<div class="post-content">
+	<div class="post-intro">
+		<p>Welcome to my code and design centric website. Please enjoy the articles I have written on <a href="/coding/">Coding</a> and resources I have shared to help with <a href="/learning/">Learning</a>. If you are hosting a conference you may want to learn more about my <a href="/speaking/">Speaking</a> experience as well.</p>
+		<p>If you find something wrong, or just want to get in touch – reach out to me at <a href="http://twitter.com/dougneiner">@dougneiner</a> on Twitter or <a href="mailto:doug@dougneiner.com">shoot me an email</a>.</p>
+	</div>
+	<ul class="social-links">
+		<li class="twitter"><a href="http://twitter.com/dougneiner">Twitter</a></li>
+		<li class="facebook"><a href="http://facebook.com/dougneiner">Facebook</a></li>
+		<li class="flickr"><a href="http://flickr.com/dougneiner">Flickr</a></li>
+		<li class="google-plus"><a href="https://plus.google.com/116161832047338828256">Google+</a></li>
+	</ul>
+	<ul class="article-list">
+		<%= listing ["coding", "learning"], 10 %>
+	</ul>
+</div>

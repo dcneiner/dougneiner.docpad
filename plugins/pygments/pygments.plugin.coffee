@@ -44,7 +44,7 @@ module.exports = (BasePlugin) ->
 							lines = (num for num in [1..processing.lines])
 							lines = lines.join( "\n" )
 							
-							code_block = "<div class='code-block code-lang-" + processing.lang + "'><div class='code-lines'><pre>#{lines}</pre></div>"
+							code_block = "<div class='code-block code-lang-" + processing.lang + "'><div class='code-lines' style='display: none'><pre>#{lines}</pre></div>"
 							code_block = code_block + stdout + "</div>"
 							
 							processed.push code_block

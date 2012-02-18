@@ -1,0 +1,13 @@
+---
+layout: main
+---
+<h1><%=@document.title%></h1>
+
+<div class="post-meta">
+Filed in <strong><%=@document.category%></strong> &bull; Shared on <a title="Permalink" href="<%= @document.url %>"><%= @document.date.toDateString() %></a>
+</div>
+
+<div class="post-content">
+<%-@content%>
+<p><a href="<%- @document.link %>">View Link &rarr;</a></p>
+</div>

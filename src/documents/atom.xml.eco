@@ -11,13 +11,13 @@
 	</author>
 
 	<% for document in @documents: %>
-		<% if document.url.indexOf('/posts') == 0: %>
+		<% if document.url.indexOf('/coding') == 0: %>
 			<entry>
 				<title><%= document.title %></title>
 				<link href="http://code.dougneiner.com<%= document.url %>"/>
 				<updated><%= document.date.toIsoDateString() %></updated>
 				<id>http://code.dougneiner.com<%= document.url %></id>
-				<content type="html"><%= document.contentRendered %></content>
+				<content type="html"><%- (document.contentRenderedWithoutLayouts || "").replace( /<div class='code-lines'[\s\S]+?<\/div>/g, '') %></content>
 			</entry>
 		<% end %>
 	<% end %>
