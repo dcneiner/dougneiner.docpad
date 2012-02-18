@@ -3,41 +3,19 @@
 
 
 /* TEAM */
-  <your title>: <your name>
-  Site:
-  Twitter:
-  Location:
+  Design/Coding: Doug Neiner
+  Site: http://dougneiner.com
+  Twitter: @dougneiner
+  Location: Iowa, USA
 
 /* THANKS */
   Names (& URL):
+	Chris Kempson for his awesome Tomorrow Theme <https://github.com/ChrisKempson/Tomorrow-Theme>
+	Drew Wilson for the awesome Pictos Icon Set <http://pictos.cc>
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: Modernizr, jQuery
-  Software:
-
-
-
-                               -o/-
-                               +oo//-
-                              :ooo+//:
-                             -ooooo///-
-                             /oooooo//:
-                            :ooooooo+//-
-                           -+oooooooo///-
-           -://////////////+oooooooooo++////////////::
-            :+ooooooooooooooooooooooooooooooooooooo+:::-
-              -/+ooooooooooooooooooooooooooooooo+/::////:-
-                -:+oooooooooooooooooooooooooooo/::///////:-
-                  --/+ooooooooooooooooooooo+::://////:-
-                     -:+ooooooooooooooooo+:://////:--
-                       /ooooooooooooooooo+//////:-
-                      -ooooooooooooooooooo////-
-                      /ooooooooo+oooooooooo//:
-                     :ooooooo+/::/+oooooooo+//-
-                    -oooooo/::///////+oooooo///-
-                    /ooo+::://////:---:/+oooo//:
-                   -o+/::///////:-      -:/+o+//-
-                   :-:///////:-            -:/://
-                     -////:-                 --//:
-                       --                       -:
+  Components: Modernizr, jQuery, Google Web Fonts, Pictos Server
+  Software: HTML5 Boilerplate
+  Icons: Pictos by Drew Wilson <http://pictos.cc>
+  Code Theme: Tomorrow and Tomorrow Night <https://github.com/ChrisKempson/Tomorrow-Theme> by Chris Kempson <https://github.com/chriskempson>

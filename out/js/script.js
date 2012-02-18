@@ -22,3 +22,14 @@ $win.bind( "scroll", function () {
 		return;
 	}
 }).trigger( 'scroll' );
+
+$( document ).on( "click", "header > div.highlight", function ( e ) {
+	if ( $( e.target ).is( "a" ) ) {
+		return;
+	}
+	if ( old === 0 ) {
+		window.location = "/";
+	} else {
+		$( "html, body" ).animate( { scrollTop: 0 }, 300 );
+	}
+});
