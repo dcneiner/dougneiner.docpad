@@ -6,7 +6,7 @@ module.exports = (BasePlugin) ->
 	fs   = require( 'fs' )
 	
 	escapeshell = (cmd) ->
-		'"' + cmd.replace(/(["])/g,'\\$1') + '"'
+		'"' + cmd.replace(/(["\$`])/g,'\\$1') + '"'
 	
 	class PygmentsPlugin extends BasePlugin
 		# Plugin Name

@@ -66,9 +66,9 @@ Filed in <a>Practices</a> &bull; Published on <a>Mon Sep 20 2010</a>
 <div class='code-block code-lang-javascript'><div class='code-lines'><pre>1
 2
 3
-4</pre></div><div class="highlight"><pre><span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="p">.</span><span class="nx">toggle</span><span class="p">();</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Prevent browser from visiting </span>
+4</pre></div><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a.toggle&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mydiv&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Prevent browser from visiting `#`</span>
 <span class="p">});</span>
 </pre></div>
 </div>
