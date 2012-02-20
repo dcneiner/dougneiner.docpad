@@ -193,20 +193,20 @@ body > header * {
 	        transition: border-color linear 200ms, color linear 200ms, opacity linear 200ms;
 }
 
-.scrolled body > header:not(:hover) > .highlight {
+body.sub-page > header:not(:hover) > .highlight {
 	border-color: #aaa;
 }
-.scrolled body > header:not(:hover) > .highlight pre span,
-.scrolled body > header:not(:hover) > .highlight pre a {
+body.sub-page > header:not(:hover) > .highlight pre span,
+body.sub-page > header:not(:hover) > .highlight pre a {
 	color: #aaa;
 }
 
-.scrolled body > header:not(:hover) > a,
-.scrolled body > header:not(:hover) > div.highlight {
+body.sub-page > header:not(:hover) > a,
+body.sub-page > header:not(:hover) > div.highlight {
 	opacity: 0.7;
 }
 
-.scrolled body > header:not(:hover) > a  h1 {
+body.sub-page > header:not(:hover) > a  h1 {
 	opacity: 0;
 }
 
@@ -271,6 +271,7 @@ body > header .highlight {
 body > header .highlight pre {
 	position: relative;
 	z-index: 20;
+	cursor: default;
 }
 
 body > header .highlight:after {
@@ -286,6 +287,7 @@ body > header .highlight:after {
 	-webkit-border-radius: 9px;
 	   -moz-border-radius: 9px;
 	        border-radius: 9px;
+	cursor: pointer;
 }
 
 body > header .highlight pre {
@@ -882,18 +884,18 @@ body > section:after {
 		content: " *******/";
 	}
 	
-	.scrolled body > header > a h1 {
+	body.sub-page > header > a h1 {
 		opacity: 1.0 !important;
 	}
 	
-	.scrolled body > header > a {
+	body.sub-page > header > a {
 		opacity: 1.0 !important;
 	}
 	
 	span.clear { display: block; height: 0; visibility: hidden; clear: left; }
 }
 
-@media all and (max-width: 650px) {
+@media all and (max-width: 768px) {
 	.social-links {
 		height: 130px;
 	}

@@ -5,7 +5,7 @@ title: Speaking
 
 If you spend any time around me at all, you will quickly realize I enjoy talking. Once you know that, its not too surprising to find out I also enjoy speaking to audiences large and small. I feel the audience gets the most benefit when I am talking about topics I am passionate about, including [jQuery](http://jquery.com), [Amplify JS](http://amplifyjs.com), and Design.
 
-Over the past few years I have had the pleasure of presenting at a number of conferences across America and even one in London:
+Over the past few years I have had the pleasure of presenting at a number of conferences across America and even one in Oxford, UK:
 
 * jQuery San Francisco Bay Area Conference (2010, 2011)
 * jQuery Boston Conference (2010, 2011)
