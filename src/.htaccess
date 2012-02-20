@@ -1,0 +1,13 @@
+FileETag none
+
+AddType application/vnd.ms-fontobject  eot
+AddType application/x-font-ttf    ttf ttc
+AddType font/opentype                  otf
+AddType application/x-font-woff        woff
+
+AddOutputFilterByType DEFLATE text/html text/css application/x-javascript text/javascript application/x-font-ttf font/opentype text/plain application/vnd.ms-fontobject application/x-font-woff
+<FilesMatch "\.(gif|jpg|jpeg|js|css|png|ico)$">
+	ExpiresDefault "access plus 10 years"
+	Header unset cache-control: 
+	Header append cache-control: "max-age=315360000"
+</FilesMatch>

@@ -1013,8 +1013,8 @@ body > section:after {
 
 @font-face {
     font-family: 'DejaVuSansMonoBook';
-    src: url('../fotns/dejavu-sans-mono/DejaVuSansMono-webfont.eot');
-    src: url('../fotns/dejavu-sans-mono/DejaVuSansMono-webfont.eot?#iefix') format('embedded-opentype'),url('../fotns/dejavu-sans-mono/DejaVuSansMono-webfont.woff') format('woff'),url('../fotns/dejavu-sans-mono/DejaVuSansMono-webfont.ttf') format('truetype'),url('../fotns/dejavu-sans-mono/DejaVuSansMono-webfont.svg#DejaVuSansMonoBook') format('svg');
+    src: url('../fonts/dejavu-sans-mono/DejaVuSansMono-webfont.eot');
+    src: url('../fonts/dejavu-sans-mono/DejaVuSansMono-webfont.eot?#iefix') format('embedded-opentype'),url('../fonts/dejavu-sans-mono/DejaVuSansMono-webfont.woff') format('woff'),url('../fonts/dejavu-sans-mono/DejaVuSansMono-webfont.ttf') format('truetype'),url('../fonts/dejavu-sans-mono/DejaVuSansMono-webfont.svg#DejaVuSansMonoBook') format('svg');
     font-weight: normal;
     font-style: normal;
 }
