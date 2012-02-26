@@ -11,3 +11,11 @@ Filed in <strong><%=@document.category%></strong> &bull; Shared on <a title="Per
 <%-@content%>
 <p><a href="<%- @document.link %>">View Link &rarr;</a></p>
 </div>
+
+<% if ( @document.comments_disabled ): %>
+<div class="comment-container comments-disabled">
+	<p>Comments are disabled on this resource.</p>
+</div>
+<% else: %>
+<div id="disqus_thread" class="comment-container"></div>
+<% end %>

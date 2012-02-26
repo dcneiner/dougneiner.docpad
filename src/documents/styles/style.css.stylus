@@ -668,8 +668,8 @@ body > section:after {
 
 #site-footer {
 	border-top: solid 1px #aaa;
-	padding: 10px 0;
-	margin: 20px 35px 10px 35px;
+	padding: 10px 35px;
+	margin: 20px 0 10px -1px;
 	color: #666;
 	font-size: 0.8em;
 }
@@ -811,6 +811,27 @@ body > section:after {
 .social-links li a:hover {
 	background-color: #000 !important;
 	color: #fff !important;
+}
+
+.comment-container {
+	border-top: solid 1px #aaa;
+	padding: 10px 35px 0 35px;
+}
+
+.comments-disabled {
+	color: #aaa;
+	text-align: center;
+	font-style: italic;
+}
+
+#dsq-content.dsq-mobile {
+	display: block;
+	margin: 0 -35px;
+	background: transparent;
+}
+
+#dsq-content.dsq-mobile #dsq-topbar {
+	background: transparent;
 }
 
 @media all and (max-height: 700px) {

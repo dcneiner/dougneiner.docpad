@@ -217,7 +217,7 @@ body > section:after{display:block;content:"";position:absolute;width:60px;right
 .post-content blockquote p:before{content:"\201c";font-size:1.3em;margin-left:-15px;display:inline-block;width:15px;color:#777}
 .post-content h2,.post-content h3{font-family:"MuseoSlab-500",Helvetica,Arial,sans-serif;font-size:1.5em;color:#4271ae;line-height:1;padding:20px 0 10px 0;margin:0;font-weight:normal}
 .post-content li code,.post-content p code{display:inline-block;background-color:#fff7cc;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;padding:0 3px;font-size:.9em}
-#site-footer{border-top:solid 1px #aaa;padding:10px 0;margin:20px 35px 10px 35px;color:#666;font-size:.8em}
+#site-footer{border-top:solid 1px #aaa;padding:10px 35px;margin:20px 0 10px -1px;color:#666;font-size:.8em}
 .article-list{list-style:none;margin:0;padding:0}
 .article-list li > a,.article-list li p a.primary-link{text-decoration:none;color:#4271ae;font-family:"MuseoSlab-500",Helvetica,Arial,sans-serif;font-size:1.2em}
 .article-list li > a:hover,.article-list li p a.primary-link:hover{color:#000}
@@ -241,6 +241,10 @@ body > section:after{display:block;content:"";position:absolute;width:60px;right
 .social-links li.google-plus a{background-color:#e78c45}
 .social-links li.google-plus a:before{content:"+"}
 .social-links li a:hover{background-color:#000 !important;color:#fff !important}
+.comment-container{border-top:solid 1px #aaa;padding:10px 35px 0 35px}
+.comments-disabled{color:#aaa;text-align:center;font-style:italic}
+#dsq-content.dsq-mobile{display:block;margin:0 -35px;background:transparent}
+#dsq-content.dsq-mobile #dsq-topbar{background:transparent}
 @media all and (max-height: 700px){body > header{width:200px;font-size:.85em}
 .nameplate{width:180px;margin-top:10px;}
 .nameplate:after{top:179px}

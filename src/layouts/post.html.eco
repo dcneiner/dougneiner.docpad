@@ -10,3 +10,11 @@ Filed in <strong><%=@document.category%></strong> &bull; Published on <a title="
 <div class="post-content">
 <%-@content%>
 </div>
+
+<% if ( @document.comments_disabled ): %>
+<div class="comment-container comments-disabled">
+	<p>Comments are disabled on this post.</p>
+</div>
+<% else: %>
+<div id="disqus_thread" class="comment-container"></div>
+<% end %>
