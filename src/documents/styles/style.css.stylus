@@ -353,8 +353,7 @@ round-bottom( size )
 
 			&:after {
 				white-space: pre;
-				margin-left: 2em;
-				content: "]"
+				content: "  ]"
 			}
 
 			li {
@@ -415,6 +414,41 @@ round-bottom( size )
 			}
 		}
 	}
+}
+
+h1 { position: relative; }
+
+.rss {
+	font-family: 'Molengo',sans-serif;
+	color: $l_foreground;
+	text-decoration: none;
+	position: absolute;
+	right: 35px;
+	height: 35px;
+	top: 42px;
+	font-size: 0.8em;
+	overflow: hidden;
+	display: block;
+	text-indent: -9999px;
+}
+
+.rss:before {
+	content: "r";
+	font-family: "Pictos Custom";
+	color: $l_orange;
+	margin-right: 5px;
+	width: 25px;
+	height: 35px;
+	line-height: 35px;
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	text-indent: 0;
+}
+
+.rss:hover:before {
+	color: #000;
 }
 
 body > section {
@@ -847,7 +881,6 @@ body > section:after {
 		background-image: none;
 		margin-right: 30px;
 		border-right: solid 1px #000;
-		border-bottom: solid 1px #aaa;
 		padding: 20px 35px;
 		font-family: DejaVuSansMonoBook, monospace;
 		font-size: 1.1em;
@@ -921,7 +954,7 @@ body > section:after {
 		width: 30px;
 		right: -31px;
 		top: 0;
-		bottom: -2px;
+		bottom: -1px;
 		background-color: transparent;
 	  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(24,57,101,0.4)), to(rgba(24,57,101,0))); /* Saf4+, Chrome */
 	  background-image: -webkit-linear-gradient(left, rgba(24,57,101,0.4), rgba(24,57,101,0)); /* Chrome 10+, Saf5.1+, iOS 5+ */
@@ -934,7 +967,7 @@ body > section:after {
 	
 	body > section {
 		margin-left: 0;
-		border-top: solid 1px #eee;
+		border-top: solid 1px #fff;
 		clear: left;
 		margin-right: 30px;
 	}
@@ -946,10 +979,6 @@ body > section:after {
 	
 	body > section .code-block .highlight {
 		margin-right: -15px;
-	}
-
-	#primary {
-		/*display: inline;*/
 	}
 
 	#site-menu {
@@ -973,7 +1002,8 @@ body > section:after {
 	}
 	
 	#site-menu li a:before{
-		content: '' ;
+		content: '[' ;
+		color: inherit;
 	}
 
 	#site-menu #nav-coding:before {
@@ -983,7 +1013,8 @@ body > section:after {
 	}
 
 	#site-menu li a:after {
-		content: '' ;
+		content: ']' ;
+		color: inherit;
 	}
 
 	#site-menu li a {
@@ -1018,7 +1049,7 @@ body > section:after {
 	}
 
 	#site-menu li:after {
-		content: ",";
+		content: "";
 		display: inline;
 		color: $d_comment;
 		white-space: pre;
@@ -1059,80 +1090,23 @@ body > section:after {
 }
 
 @media all and (max-width: 560px) {
-	#site-menu li {
-		display: block;
-		margin: 0;
-
+	.nameplate a {
 		&:after {
-			content: ",";
-			color: $d_foreground;
-		}
-
-		&:last-child:after {
-			content: "";
-			display: none;
-		}
-
-		&:before {
-			content: "       ";
-			white-space: pre;
+			content: ";"
 		}
 	}
 
 	#site-menu {
-		display: block;
+		width: auto;
 		margin: 0;
 		&:before {
-			content: "    menu = [";
-			color: $d_foreground;
-			white-space: pre;
+			content: "";
 		}
-
-		&:after {
-			content: "    ];"
-			color: $d_foreground;
-			white-space: pre;
-		}
-	}
-
-	#site-menu li a:before,
-	#site-menu li a:after {
-		content: '"' ;
-		color: inherit;
 	}
 
 	#site-menu #nav-coding:before {
-		content: '';
-		display: none;
-	}
-
-	#site-menu li a {
-		display: inline;
-		color: $d_green;
-
-		&:hover {
-			color: #fff;
-		}
-	}
-
-	#site-menu li.current {
-		a {
-			color: $d_green;
-
-			&:hover {
-				color: #fff;
-			}
-			
-			&:before {
-				content: '       "*';
-				color: inherit;
-			}
-
-			&:after {
-				content: '*"';
-				color: inherit;
-			}
-		}
+		content: '//';
+		margin-left: -0.5em;
 	}
 }
 
@@ -1140,7 +1114,7 @@ body > section:after {
 	body > header {
 		margin-right: 5px;
 		margin-left: 5px;
-		border-left: solid 1px #fff;
+		border-left: solid 1px #000;
 	}
 	
 	body > section {
@@ -1166,21 +1140,13 @@ body > section:after {
 	body > section:after {
 		display: none
 	}
-	
-	body > header > a {
-		width: 40%;
-		font-size: 0.7em;
-	}
-	
-	body > header > #primary {
-		width: 60%;
-	}
 }
 
 @media all and (max-width: 415px) {
 	body > header {
-		padding: 10px;
+		padding: 15px;
 		font-size: 1em;
+		line-height: 1;
 	}
 	
 	.code-block {
@@ -1192,6 +1158,10 @@ body > section:after {
 	#content h1 {
 		padding-left: 10px;
 		padding-right: 10px;
+	}
+
+	#content .rss {
+		right: 10px;
 	}
 	
 	.post-meta {

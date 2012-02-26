@@ -3,15 +3,9 @@ layout: main
 title: Welcome
 ---
 
-<h1><%-@document.title %></h1>
+<h1><%-@document.title %> <a class="rss" href="/atom.xml">RSS Feed</a></h1>
 
-<% listing = ( slugs, limit ) => %>
-	<% _limit = 0 %>
-	
-	<% for document in @documents: %>
-		<% if document.slug.split( '-' ).shift() in slugs and document.slug.indexOf( 'index' ) == -1: %>
-		<% _limit = _limit + 1 %>
-		<% if _limit <= limit: %>
+<% listing = ( slugs, limit ) => %><% _limit = 0 %><% for document in @documents: %><% if document.slug.split( '-' ).shift() in slugs and document.slug.indexOf( 'index' ) == -1: %><% _limit = _limit + 1 %><% if _limit <= limit: %>
 		<li typeof="sioc:Page" about="<%= document.url %>" class="post-type-<%= if document.link then "link" else "article" %>" >
 			<% if document.link:%>
 			<p><a href="<%= document.link %>" class="primary-link" property="dc:title">
@@ -27,10 +21,7 @@ title: Welcome
 			<p><%= document.excerpt %></p>
 			<% end %>
 		</li>
-		<% end %>
-		<% end %>
-	<% end %>
-<% end %>
+		<% end %><% end %><% end %><% end %>
 
 <div class="post-content">
 	<div class="post-intro">
