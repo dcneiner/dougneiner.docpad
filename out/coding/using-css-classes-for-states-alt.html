@@ -1,0 +1,333 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>Using CSS Classes with jQuery to Control Visual State | Doug Neiner</title>
+
+  <meta name="description" content="The coding blog of designer, coder and speaker: Doug Neiner.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Molengo">
+  <link rel="stylesheet" href="http://get.pictos.cc/fonts/841/2">
+
+  <script src="/js/libs/modernizr-2.5.2.min.js"></script>
+  
+  <script src="/js/libs/respond.min.js"></script>
+
+  <link href="http://code.dougneiner.com/atom.xml" type="application/atom+xml" rel="alternate" title="RSS Feed" />
+</head>
+<body class="page-coding-using-css-classes-for-states-alt sub-page">
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+
+  <header>
+    <div class="nameplate">
+        <a href="/"><h1>Doug Neiner</h1></a>
+        <dl>
+            <dt>Name</dt>
+            <dd><a href="/">Doug Neiner</a></dd>
+
+            <dt>Employer</dt>
+            <dd><a href="http://appendto.com">appendTo</a></dd>
+
+            <dt>Social</dt>
+            <dd>
+                <ul>
+                    <li><a href="https://twitter.com/dougneiner">Twitter</a></li>
+                    <li><a href="http://facebook.com/dougneiner">Facebook</a></li>
+                    <li><a href="http://flickr.com/dougneiner">Flickr</a></li>
+                    <li><a href="https://plus.google.com/116161832047338828256">Google+</a></li>
+                </ul>
+            </dd>
+        </dl>
+    </div>
+
+    <nav id="primary">
+        <ul id="site-menu">
+            <li id="nav-main" ><a href="/">Main</a></li>
+            <li id="nav-coding" class="current">
+                <a href="/coding/">Coding</a>
+            </li>
+            <li id="nav-speaking" ><a href="/speaking/">Speaking</a>
+                
+            </li>
+            <li id="nav-learning" ><a href="/learning/">Learning</a></li>
+        </ul>
+    </nav>
+    <span class="clear"></span>
+</header>
+<section id="content">
+    <h1>Using CSS Classes with jQuery to Control Visual State</h1>
+
+<div class="post-meta">
+Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href="/coding/using-css-classes-for-states-alt.html">Sun Feb 26 2012</a>
+</div>
+
+<div class="post-content">
+<h2>Strategy</h2>
+
+<p>Instead of showing, hiding, and otherwise adjusting an HTML element's visual display with jQuery, execute the same level of change by strategically adding and removing classes with jQuery/JavaScript. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.</p>
+
+<h2>Symptoms</h2>
+
+<p>You can easily detect when to use this strategy when you discover yourself performing any of the following actions:</p>
+
+<ul>
+<li><p>You show, hide, or otherwise visually adjust two or more elements at the same time. The higher the number of elements changed, the greater the need for this strategy.</p></li>
+<li><p>You need to run any number of jQuery selections via <code>$( selector )</code>, <code>.find()</code>, etc, just to adjust the visual display of those elements.</p></li>
+<li><p>You use jQuery’s <a href="http://api.jquery.com/css"><code>.css()</code></a> method to change an element from one visual appearance to another predetermined appearance.</p></li>
+</ul>
+
+<h3>Problem 1</h3>
+
+<p>The following code illustrates the first two of these symptoms:</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Three separate elements are selected</span>
+    <span class="kd">var</span> <span class="nx">loadingMessage</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#loadingMessage&quot;</span> <span class="p">),</span>
+        <span class="nx">header</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#header&quot;</span> <span class="p">),</span>
+        <span class="nx">content</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#content&quot;</span> <span class="p">);</span>
+
+    <span class="c1">// Three CSS changes are made:</span>
+    <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="nx">header</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="nx">content</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+    <span class="c1">// Lots of setup and async code here</span>
+
+    <span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Three additional CSS changes are made</span>
+        <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">header</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+        <span class="nx">content</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+
+<h3>Problem 2</h3>
+
+<p>This short example illustrates the third symptom:</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6</pre></div><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$notification</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.notification&quot;</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$notification</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span> <span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">$notification</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+
+<h2>Solutions</h2>
+
+<h3>Solution 1</h3>
+
+<p>To visually adjust <strong>multiple items</strong> at the same time, follow these steps:</p>
+
+<ol>
+<li>Find a parent element that is shared by the elements you wish to adjust. Often you can use the <code>html</code> or <code>body</code> element, but it can be any element that contains all the target elements.</li>
+<li>Determine a good CSS class name to describe the <em>combined</em> visual state of the elements, optionally add that class to the HTML and then manipulate it by using jQuery’s <a href="http://api.jquery.com/addClass"><code>addClass</code></a>, <a href="http://api.jquery.com/removeClass"><code>removeClass</code></a> and <a href="http://api.jquery.com/toggleClass"><code>toggleClass</code></a> methods. Prefixing these classes with <code>state-</code> is one way to signify their purpose.</li>
+<li>Write CSS that scopes selections using a combination of the chosen parent element and the new class that is being applied to it.</li>
+</ol>
+
+<p>The CSS to fix our <code>loadingMessage</code> code would look like this:</p>
+
+<div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6
+7</pre></div><div class="highlight"><pre><span class="c">/* Loading message is hidden by default, only shown during loading */</span>
+<span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.state-loading</span> <span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c">/* Content and Header are hidden during loading */</span>
+<span class="nc">.state-loading</span> <span class="nf">#content</span><span class="o">,</span>
+<span class="nc">.state-loading</span> <span class="nf">#header</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<p>Since the page will always start in a loading state, we add the class of <code>loading</code> directly to the <code>&lt;body&gt;</code> element:</p>
+
+<div class='code-block code-lang-html'><div class='code-lines' style='display: none'><pre>1</pre></div><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;state-loading&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+
+<p>Finally, we delete almost all the code we had before, and just remove the <code>loading</code> class when loading is complete:</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6</pre></div><div class="highlight"><pre><span class="c1">// Lots of setup and async code here</span>
+
+<span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// The app is loaded!</span>
+    <span class="nx">$</span><span class="p">(</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span> <span class="s2">&quot;state-loading&quot;</span> <span class="p">);</span>
+<span class="p">}</span> 
+</pre></div>
+</div>
+
+<h3>Solution 2</h3>
+
+<p>To adjust the visual display of a <strong>single item</strong>, follow these steps:</p>
+
+<ol>
+<li>Any aspect of the visual display that will not change should be defined as the element’s default display.</li>
+<li>Determine a good class name to describe the new visual state of the element, optionally add that class to the HTML for the element and then manipulate it by using jQuery’s class manipulation methods.</li>
+<li>Write CSS that scopes the new styles to the chosen element with the new class applied. You can also use multiple class syntax if you the element you are styling is already defined by a class: <code>.notification.ready</code> (Multiple class syntax is not supported by IE6 and lower).</li>
+</ol>
+
+<p>If we assume the default state of our notification display is <code>green</code>, we can use the following CSS:</p>
+
+<div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
+2</pre></div><div class="highlight"><pre><span class="nc">.notification</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">green</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.notification.state-error</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<p>The following code will add the class of <code>state-error</code> when our variable <code>error</code> is true:</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2</pre></div><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$notification</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.notification&quot;</span> <span class="p">);</span>
+<span class="nx">$notification</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span> <span class="s2">&quot;state-error&quot;</span><span class="p">,</span> <span class="nx">error</span> <span class="p">);</span>
+</pre></div>
+</div>
+
+<h2>Strengths</h2>
+
+<ul>
+<li><strong>Speed</strong> – By strategically using classes instead of direct manipulation, you remove the need to find, then adjust multiple elements. Very little code is needed to add or remove a class, replaced potentially slow moving code (selectors and traversal) with extremely efficient code. By leaving the bulk of the changes up to the browser, you also capitalize on the speed of the browser’s CSS engine.</li>
+<li><strong>Separation of functionality and style</strong> – By only manipulating a class name, you leave the bulk of the visual definition in the CSS files – where they belong. In a team setting, this also allows a designer to modify the design without interacting with the JavaScript.</li>
+<li><strong>Self describing code</strong> – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity.</li>
+<li><strong>Scoped events with delegation</strong> – You can leverage these class names to automatically filter out unwanted event triggers based on state. Look at the following example for ideas:</li>
+</ul>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">)</span>
+
+    <span class="c1">// perform the save, but not if we are still</span>
+    <span class="c1">// loading or in the middle of a save</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;body:not(.loading, .saving) button.save&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>        
+        <span class="p">...</span>
+    <span class="p">})</span>
+
+    <span class="c1">// prevent forms from submitting</span>
+    <span class="c1">// if a save is in progress</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="s2">&quot;body.saving&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">})</span>
+
+    <span class="c1">// only run the setup one time per element</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;.widget:not(.widget-setup)&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="p">...</span>
+        <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">).</span><span class="nx">addClass</span><span class="p">(</span> <span class="s2">&quot;widget-setup&quot;</span> <span class="p">);</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+
+<h2>Scribbles</h2>
+
+<h3>Transitions</h3>
+
+<p>Often the move from one state to another is accompanied by some sort of animation. Since much of the time these transitions are visual finesse, I suggest using CSS3 transitions and animations to implement the transitions. The fallback in unsupported browsers will simply be an instant change from one state to the next. In situations where the animation is crucial to the interaction, you may not be able to leverage everything covered in this article.</p>
+
+<h3>Using Attributes instead of Classes</h3>
+
+<p>You can also use attribute changes to control flow, though I haven't done any speed comparisons between the two methods. Here is an example using a custom HTML5 data attribute named <code>data-state</code>:</p>
+
+<div class='code-block code-lang-html'><div class='code-lines' style='display: none'><pre>1</pre></div><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">data-state=</span><span class="s">&quot;loading&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+
+<div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
+2</pre></div><div class="highlight"><pre><span class="nt">body</span><span class="o">[</span><span class="nt">data-state</span><span class="o">=</span><span class="s2">&quot;loading&quot;</span><span class="o">]</span> <span class="nf">#loadingMessage</span><span class="o">,</span>
+<span class="nt">body</span><span class="o">[</span><span class="nt">data-state</span><span class="o">=</span><span class="s2">&quot;saving&quot;</span><span class="o">]</span> <span class="nf">#savingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2
+3</pre></div><div class="highlight"><pre><span class="nx">$body</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;ready&quot;</span> <span class="p">);</span> <span class="c1">// From loading to ready</span>
+<span class="c1">// ... other code ...</span>
+<span class="nx">$body</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;saving&quot;</span> <span class="p">);</span> <span class="c1">// Switch to saving</span>
+</pre></div>
+</div>
+</div>
+
+<div class="about-author">
+    <img src="/img/doug-author.jpg" alt="Doug Neiner" />
+    <p>Doug Neiner is a Senior Designer at <a href="http://appendto.com">appendTo, LLC</a> and is a <a href="http://jquery.org/board">jQuery Board Member</a>. Doug is a front-end web developer with a love for semantic markup, powerful CSS, and efficient, reusable jQuery/JavaScript. He loves knowledge sharing and helping both new and developing jQuery programmers perfect their craft. When he isn't programming or designing on the computer, you might find Doug playing with his three wonderful children, hanging out with his beautiful wife, or talking about the farm he wants to own one day. You should <a href="https://twitter.com/dougneiner">follow him on Twitter</a>!</p>
+</div>
+
+
+<div id="disqus_thread" class="comment-container"></div>
+
+
+    <footer id="site-footer">
+        <p>Copyright &copy; 2012 Doug Neiner. All rights reserved. Code examples released to the public domain are free to use in projects, commercial and non-commercial alike. Code highlighting and site accent colors from <a href="https://github.com/ChrisKempson/Tomorrow-Theme">Tomorrow Theme</a> by <a href="https://github.com/chriskempson">Chris Kempson</a>.</p>
+        <p>If you like the content on this site, I encourage you to <a href="https://twitter.com/dougneiner">follow me on Twitter</a> and <a href="/atom.xml">subscribe to the RSS feed</a>.</p>
+    </footer>
+</section>
+
+  <script>
+    var disqus_identifier = 'coding-using-css-classes-for-states-alt';
+  </script>
+  <script src="/js/script.js"></script>
+  <script>
+    var _gaq=[['_setAccount','UA-1446687-4'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+</body>
+</html>

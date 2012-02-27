@@ -124,8 +124,8 @@ pre {
 .highlight .m { color: $d_orange; } /* Literal.Number */
 .highlight .s { color: $d_green } /* Literal.String */
 .highlight .na { color: $d_red } /* Name.Attribute */
-.highlight .nb { color: #007020 } /* Name.Builtin */
-.highlight .nc { color: #B00060; } /* Name.Class */
+.highlight .nb { color: $d_yellow } /* Name.Builtin */
+.highlight .nc { color: $d_red; } /* Name.Class */
 .highlight .no { color: #003060; } /* Name.Constant */
 .highlight .nd { color: #505050; } /* Name.Decorator */
 .highlight .ni { color: #800000; } /* Name.Entity */
@@ -608,7 +608,7 @@ body > section:after {
 .post-content {
 	padding: 20px 35px;
 	font-family: 'Molengo', sans-serif;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	line-height: 1.6;
 }
 
@@ -621,14 +621,40 @@ body > section:after {
 }
 
 #site-footer a,
-.post-content a {
+.post-content a ,
+.comment-container a,
+.about-author a {
 	color: $l_purple;
 	text-decoration: none;
 }
 
 #site-footer a:hover,
-.post-content a:hover {
+.post-content a:hover,
+.comment-container a:hover,
+.about-author a:hover  {
 	color: $l_green;
+}
+
+.about-author {
+	padding: 20px 35px 5px 35px;
+	margin: 0 0 0 -1px;
+	background: rgba(255,255,255,0.2);
+	font-size: 0.9em;
+	border-top: solid 1px #aaa;
+}
+
+.about-author p {
+	margin-top: 0;
+	padding-top: 0;
+	line-height: 1.6;
+}
+
+.about-author img {
+	float: left;
+	margin: 0 10px 8px 0;
+	padding: 4px;
+	border: solid 1px #aaa;
+	background-color: #fff;
 }
 
 .post-content p {
@@ -655,10 +681,15 @@ body > section:after {
 	font-weight: normal;
 }
 
+.post-content h3 {
+	font-size: 1.2em;
+	color: $l_purple;
+}
+
 .post-content li code,
 .post-content p code {
 	display: inline-block;
-	background-color: #fff7cc;
+	background-color: #eee;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -1179,6 +1210,12 @@ body > section:after {
 	#content h1 {
 		padding-left: 10px;
 		padding-right: 10px;
+		font-size: 2em;
+	}
+
+	.about-author {
+		padding-right: 10px;
+		padding-left: 10px;
 	}
 
 	#content .rss {
@@ -1196,8 +1233,8 @@ body > section:after {
 	}
 	
 	#site-footer {
-		margin-left: 10px;
-		margin-right: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 }
 

@@ -11,6 +11,11 @@ Filed in <strong><%=@document.category%></strong> &bull; Published on <a title="
 <%-@content%>
 </div>
 
+<div class="about-author">
+	<img src="/img/doug-author.jpg" alt="Doug Neiner" />
+	<p>Doug Neiner is a Senior Designer at <a href="http://appendto.com">appendTo, LLC</a> and is a <a href="http://jquery.org/board">jQuery Board Member</a>. Doug is a front-end web developer with a love for semantic markup, powerful CSS, and efficient, reusable jQuery/JavaScript. He loves knowledge sharing and helping both new and developing jQuery programmers perfect their craft. When he isn't programming or designing on the computer, you might find Doug playing with his three wonderful children, hanging out with his beautiful wife, or talking about the farm he wants to own one day. You should <a href="https://twitter.com/dougneiner">follow him on Twitter</a>!</p>
+</div>
+
 <% if ( @document.comments_disabled ): %>
 <div class="comment-container comments-disabled">
 	<p>Comments are disabled on this post.</p>
