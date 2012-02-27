@@ -29,7 +29,8 @@
   <%-@content%>
 
   <script>
-    var disqus_identifier = '<%= @document.slug %>';
+    var disqus_identifier = '<%= @document.slug %>',
+        disqus_url        = 'http://code.dougneiner.com/<%= @document.url %>';
   </script>
   <script src="/js/script.js"></script>
   <script>

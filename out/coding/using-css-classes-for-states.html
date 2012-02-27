@@ -72,7 +72,7 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 <div class="post-content">
 <h2>Strategy</h2>
 
-<p>Instead of showing, hiding, and otherwise adjusting an HTML element's visual display with jQuery, execute the same level of change by strategically adding and removing classes with jQuery/JavaScript. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.</p>
+<p>Instead of adjusting an HTML element's visual style with jQuery, make the same changes by strategically adding and removing classes. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.</p>
 
 <h2>Symptoms</h2>
 
@@ -231,7 +231,7 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 <ul>
 <li><strong>Speed</strong> – By strategically using classes instead of direct manipulation, you remove the need to find, then adjust multiple elements. Very little code is needed to add or remove a class, replaced potentially slow moving code (selectors and traversal) with extremely efficient code. By leaving the bulk of the changes up to the browser, you also capitalize on the speed of the browser’s CSS engine.</li>
 <li><strong>Separation of functionality and style</strong> – By only manipulating a class name, you leave the bulk of the visual definition in the CSS files – where they belong. In a team setting, this also allows a designer to modify the design without interacting with the JavaScript.</li>
-<li><strong>Self describing code</strong> – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity.</li>
+<li><strong>Self describing code</strong> – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity (For a caveat to this point, see the note about <a href="#education">Education</a> at the end of this post)</li>
 <li><strong>Scoped events with delegation</strong> – You can leverage these class names to automatically filter out unwanted event triggers based on state. Look at the following example for ideas:</li>
 </ul>
 
@@ -275,7 +275,7 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 </pre></div>
 </div>
 
-<h2>Scribbles</h2>
+<h2>Notes</h2>
 
 <h3>Transitions</h3>
 
@@ -302,6 +302,10 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 <span class="nx">$body</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;saving&quot;</span> <span class="p">);</span> <span class="c1">// Switch to saving</span>
 </pre></div>
 </div>
+
+<h3 id="education">Education</h3>
+
+<p>If you work in a team environment, it would be wise to discuss this strategy with your team before implementing. JavaScript developers who do not work with CSS frequently may not understand the ramifications of the <code>addClass</code> and <code>removeClass</code> methods throughout your code.</p>
 </div>
 
 <div class="about-author">
@@ -320,7 +324,8 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 </section>
 
   <script>
-    var disqus_identifier = 'coding-using-css-classes-for-states';
+    var disqus_identifier = 'coding-using-css-classes-for-states',
+        disqus_url        = 'http://code.dougneiner.com//coding/using-css-classes-for-states.html';
   </script>
   <script src="/js/script.js"></script>
   <script>

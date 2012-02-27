@@ -6,7 +6,7 @@ var className        = document.body.className,
 	comment_container;
 
 // Set global config for Disqus
-window.disqus_developer = 1; // Developer mode is on
+window.disqus_developer = 0;
 window.disqus_shortname = 'dougneiner';
 
 if ( index ) {

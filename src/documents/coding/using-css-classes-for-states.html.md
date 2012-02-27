@@ -2,12 +2,12 @@
 layout: post
 title: Using CSS Classes with jQuery to Control Visual State
 category: Strategy
-ignore: false
+excerpt: Instead of showing, hiding, and otherwise adjusting an HTML element's visual display with jQuery, execute the same level of change by strategically adding and removing classes with jQuery/JavaScript.
 ---
 
 ## Strategy
 
-Instead of showing, hiding, and otherwise adjusting an HTML element's visual display with jQuery, execute the same level of change by strategically adding and removing classes with jQuery/JavaScript. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.
+Instead of adjusting an HTML element's visual style with jQuery, make the same changes by strategically adding and removing classes. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.
 
 ## Symptoms
 
@@ -126,7 +126,7 @@ $notification.toggleClass( "state-error", error );
 
 * **Speed** – By strategically using classes instead of direct manipulation, you remove the need to find, then adjust multiple elements. Very little code is needed to add or remove a class, replaced potentially slow moving code (selectors and traversal) with extremely efficient code. By leaving the bulk of the changes up to the browser, you also capitalize on the speed of the browser’s CSS engine.
 * **Separation of functionality and style** – By only manipulating a class name, you leave the bulk of the visual definition in the CSS files – where they belong. In a team setting, this also allows a designer to modify the design without interacting with the JavaScript.
-* **Self describing code** – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity.
+* **Self describing code** – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity (For a caveat to this point, see the note about [Education](#education) at the end of this post)
 * **Scoped events with delegation** – You can leverage these class names to automatically filter out unwanted event triggers based on state. Look at the following example for ideas:
 
 ```javascript
@@ -151,7 +151,7 @@ $( document )
 	});
 ```
 
-## Scribbles
+## Notes
 
 ### Transitions
 
@@ -175,3 +175,7 @@ $body.attr( "state", "ready" ); // From loading to ready
 // ... other code ...
 $body.attr( "state", "saving" ); // Switch to saving
 ```
+
+<h3 id="education">Education</h3>
+
+If you work in a team environment, it would be wise to discuss this strategy with your team before implementing. JavaScript developers who do not work with CSS frequently may not understand the ramifications of the `addClass` and `removeClass` methods throughout your code.
