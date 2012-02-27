@@ -75,8 +75,8 @@ h2,h3{page-break-after:avoid}
 .code-block.code-lang-html{border-color:#e78c45}
 .code-block.code-lang-css{border-color:#c397d8}
 .highlight .hll{background-color:#ffc}
-.highlight{background:#282a2e;color:#eaeaea;text-shadow:#000 0 1px 0;font-size:.8em;padding:10px 10px 10px 60px;margin-right:-30px;-webkit-border-top-right-radius:10px;-webkit-border-bottom-right-radius:10px;-moz-border-radius:0 10px 10px 0;border-radius:0 10px 10px 0}
-.code-lines{background:#373b41;color:#eaeaea;color:#777;text-shadow:#000 0 1px 0;font-size:.8em;padding:10px 10px 10px 15px;position:absolute;top:0;left:0;text-align:right;border-right:solid 1px #000;display:block !important}
+.highlight{background:#282a2e;color:#eaeaea;text-shadow:#000 0 1px 0;font-size:.8em;padding:10px 10px 10px 40px;margin-right:-30px;-webkit-border-top-right-radius:10px;-webkit-border-bottom-right-radius:10px;-moz-border-radius:0 10px 10px 0;border-radius:0 10px 10px 0}
+.code-lines{background:#373b41;color:#eaeaea;color:#777;text-shadow:#000 0 1px 0;font-size:.8em;padding:10px 10px 10px 15px;position:absolute;top:0;left:0;text-align:right;border-right:solid 1px #000;display:none}
 .linenodiv pre,.highlight pre{font-size:1em;font-family:DejaVuSansMonoBook,monospace}
 .highlight a{text-decoration:none}
 .highlight a:hover{text-decoration:underline}
@@ -180,6 +180,7 @@ body.sub-page > header:not(:hover) > a  h1{opacity:0}
 h1{position:relative}
 .rss{font-family:'Molengo',sans-serif;color:#4d4d4c;text-decoration:none;position:absolute;right:35px;height:35px;top:42px;font-size:.8em;overflow:hidden;display:block;text-indent:-9999px}
 .rss:before{content:"r";font-family:"Pictos Custom";color:#f5871f;margin-right:5px;width:25px;height:35px;line-height:35px;display:block;position:absolute;right:0;top:0;text-indent:0}
+.ie9 .rss:before{display:none}
 .rss:hover:before{color:#000}
 body > section{margin:0 60px 0 316px;background-color:#dfdfdf;background-image:url("../img/bg-noise.png");border-left:solid 1px #eee;padding:1px 0;border-right:solid 1px #fff;max-width:870px;position:relative;min-height:100%}
 body > section:after{display:block;content:"";position:absolute;width:60px;right:-61px;top:0;bottom:0;background-color:transparent;background-image:-webkit-gradient(linear,left top,left bottom,from(rgba(24,57,101,0.40)),to(rgba(24,57,101,0.00)));background-image:-webkit-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-moz-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-ms-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:-o-linear-gradient(left,rgba(24,57,101,0.40),rgba(24,57,101,0.00));background-image:linear-gradient(to right,rgba(24,57,101,0.40),rgba(24,57,101,0.00));z-index:-1}
@@ -231,12 +232,14 @@ body > section:after{display:block;content:"";position:absolute;width:60px;right
 .article-list small strong{font-weight:normal;color:#000}
 .post-type-link a.primary-link:before{font-family:'Pictos Custom';content:"L";-webkit-font-smoothing:antialiased;display:inline-block;width:18px}
 .post-type-article a.primary-link:before{font-family:'Pictos Custom';content:"A";-webkit-font-smoothing:antialiased;display:inline-block;width:18px}
+.ie9 .post-type-link a.primary-link:before,.ie9 .post-type-article a.primary-link:before{display:none}
 .social-links{height:60px;margin:20px 0;padding:0 0 20px 0;border-bottom:solid 1px #aaa;list-style:none}
 .social-links li{float:left;width:23.5%;margin-left:2%}
 .social-links li:first-child{margin-left:0}
 .social-links li a{display:block;text-align:center;height:60px;line-height:60px;background:#aaa;-webkit-border-radius:6px;-moz-border-radius:6px;border-radius:6px;color:#fff;vertical-align:middle}
 .social-links li.twitter a{background-color:#70c0b1}
 .social-links li a:before{font-family:"Pictos Custom";font-size:2em;margin-right:10px;margin-left:-5px;vertical-align:middle;position:relative;top:2px}
+.ie9 .social-links li a:before{display:none}
 .social-links li.twitter a:before{content:"t"}
 .social-links li.facebook a{background-color:#7aa6da}
 .social-links li.facebook a:before{content:"f"}
