@@ -70,11 +70,23 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 </div>
 
 <div class="post-content">
-<p>We tend to look at web applications and web sites as a progression of user input and system response. We view their interaction more as a river of information flowing from process to process. Never quite sure what the user will do next, our system attempts to provide the appropriate responses to their input.</p>
+<h2>Strategy</h2>
 
-<p>If we take a closer look, instead of a constant dynamic stream of responses, we will see various static states on both the component and the page level. Except in games and edge cases, no part of our interface is in a constant state of flux. For example, a complex web application may start in a <code>loading</code> state, and then move to a <code>ready</code> state after the application is ready for user interaction. Later in the interaction cycle, it might transition to a <code>saving</code> state in which most buttons are disabled until the system returns to a <code>ready</code> state. </p>
+<p>Instead of showing, hiding, and otherwise adjusting an HTML element's visual display with jQuery, execute the same level of change by strategically adding and removing classes with jQuery/JavaScript. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.</p>
 
-<p>The temptation is for developers to keep all of the changes associated with these states in the JavaScript code itself. In the case of our <code>loading</code> and <code>ready</code> states, their code might looks something like this:</p>
+<h2>Symptoms</h2>
+
+<p>You can easily detect when to use this strategy when you discover yourself performing any of the following actions:</p>
+
+<ul>
+<li><p>You show, hide, or otherwise visually adjust two or more elements at the same time. The higher the number of elements changed, the greater the need for this strategy.</p></li>
+<li><p>You need to run any number of jQuery selections via <code>$( selector )</code>, <code>.find()</code>, etc, just to adjust the visual display of those elements.</p></li>
+<li><p>You use jQuery’s <a href="http://api.jquery.com/css"><code>.css()</code></a> method to change an element from one visual appearance to another predetermined appearance.</p></li>
+</ul>
+
+<h3>Problem 1</h3>
+
+<p>The following code illustrates the first two of these symptoms:</p>
 
 <div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
 2
@@ -91,94 +103,137 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 13
 14
 15
-16</pre></div><div class="highlight"><pre><span class="kd">var</span> <span class="nx">loadingMessage</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#loadingMessage&quot;</span> <span class="p">),</span>
-    <span class="nx">header</span>         <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#header&quot;</span> <span class="p">),</span>
-    <span class="nx">content</span>        <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#content&quot;</span> <span class="p">);</span>
+16
+17
+18
+19
+20</pre></div><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Three separate elements are selected</span>
+    <span class="kd">var</span> <span class="nx">loadingMessage</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#loadingMessage&quot;</span> <span class="p">),</span>
+        <span class="nx">header</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#header&quot;</span> <span class="p">),</span>
+        <span class="nx">content</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#content&quot;</span> <span class="p">);</span>
 
-<span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-<span class="nx">header</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-<span class="nx">content</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="c1">// Three CSS changes are made:</span>
+    <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="nx">header</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="nx">content</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
 
-<span class="c1">// Lots of setup and async code here</span>
+    <span class="c1">// Lots of setup and async code here</span>
 
-<span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// The app is loaded!</span>
-    <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="nx">header</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-    <span class="nx">content</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-<span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Three additional CSS changes are made</span>
+        <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+        <span class="nx">header</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+        <span class="nx">content</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 
-<p>The important thing to notice about this example, is that each component is being interacted with directly through jQuery methods. This requires a reference to the elements via direct selection or traversal. It also puts the heavy lifting on jQuery to properly show and hide these elements appropriately.</p>
+<h3>Problem 2</h3>
 
-<p>As we add different states to the application ( <code>saving</code>, <code>data entry</code>, <code>fullscreen text entry</code> ), the need for code like this multiplies.</p>
-
-<h2>Thinking Differently</h2>
-
-<p>In order to cut down on this type of jQuery code, we need to widen the focus of our thinking. As soon as we start changing the visual state of multiple items at the same time, we should start to think of a different way of adjusting visual state.</p>
-
-<h3>The Document Object Model</h3>
-
-<p>The Document Object Model is often represented as an inverse tree. We start at the root <code>&lt;html&gt;</code> element and quickly branch to <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code>. As we step into the rest of our page structure, we see many branches forming our inverted tree. </p>
-
-<p>When you cut a branch off a real tree, you are also removing any other branches, twigs and leaves attached to it. In short, modifying a parent branch affects the child limbs. The DOM works the same way, and we can use that to our advantage when we seek to make sweeping changes with minimal effort.</p>
-
-<h3>jQuery's <code>show</code> and <code>hide</code></h3>
-
-<p>Behind the scenes, jQuery's <code>show</code> and <code>hide</code> methods are (after a bit of legwork to ensure the proper changes) adjusting <code>.style.display</code> on each element. Since that change is made on the element level, it has the same effect as applying <code>style="display: none"</code> or <code>style="display: block"</code> inline in the HTML. It increases the specificity of the styling, overriding any other <code>display</code> setting in the CSS except those with an <code>!important</code> designation.</p>
-
-<h2>A New Approach</h2>
-
-<p>Now that we realize that we are actually adjusting a single CSS property with JavaScript, lets try optimizing this adjustment. The first thing we want to do, is write CSS to fully describe the two states we are looking for. Since a <code>ready</code> state is how our application should look most of the time, we will use that as the default state.</p>
-
-<p>When thinking about states, we should seek to change some aspect of shared parent to affect the children. This can be simply adding a class name, or changing some other attribute of the element that we can respond to in CSS. Lets use a <code>loading</code> class applied to the <code>&lt;body&gt;</code> element to signify when our application is in a loading state.</p>
-
-<p>Since elements default to being visible, we don't need to do anything special to <code>#content</code> and <code>#header</code> for our ready state. We do want the <code>#loadingMessage</code> to be hidden while in a <code>ready</code> state, so we set its default state to <code>display: none;</code>. During loading, the <code>#loadingMessage</code> should be visible, and both <code>#content</code> and <code>#header</code> should be hidden. Here is the finished CSS:</p>
-
-<div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
-2
-3
-4
-5</pre></div><div class="highlight"><pre><span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.loading</span> <span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
-
-<span class="nc">.loading</span> <span class="nf">#content</span><span class="o">,</span>
-<span class="nc">.loading</span> <span class="nf">#header</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-</div>
-
-<p>Since the page will always start in a loading state, lets add the class of <code>loading</code> directly to the <code>&lt;body&gt;</code> element:</p>
-
-<div class='code-block code-lang-html'><div class='code-lines' style='display: none'><pre>1</pre></div><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;loading&quot;</span><span class="nt">&gt;</span>
-</pre></div>
-</div>
-
-<p>Given the added CSS and class name applied in HTML, our complete solution needed to replace the previous code is as follows:</p>
+<p>This short example illustrates the third symptom:</p>
 
 <div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
 2
 3
 4
 5
-6
-7
-8</pre></div><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$body</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="p">);</span> <span class="c1">// Store a reference</span>
+6</pre></div><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$notification</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.notification&quot;</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="nx">$notification</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span> <span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">$notification</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 
-<span class="c1">// Lots of setup and async code here</span>
+<h2>Solutions</h2>
+
+<h3>Solution 1</h3>
+
+<p>To visually adjust <strong>multiple items</strong> at the same time, follow these steps:</p>
+
+<ol>
+<li>Find a parent element that is shared by the elements you wish to adjust. Often you can use the <code>html</code> or <code>body</code> element, but it can be any element that contains all the target elements.</li>
+<li>Determine a good CSS class name to describe the <em>combined</em> visual state of the elements, optionally add that class to the HTML and then manipulate it by using jQuery’s <a href="http://api.jquery.com/addClass"><code>addClass</code></a>, <a href="http://api.jquery.com/removeClass"><code>removeClass</code></a> and <a href="http://api.jquery.com/toggleClass"><code>toggleClass</code></a> methods. Prefixing these classes with <code>state-</code> is one way to signify their purpose.</li>
+<li>Write CSS that scopes selections using a combination of the chosen parent element and the new class that is being applied to it.</li>
+</ol>
+
+<p>The CSS to fix our <code>loadingMessage</code> code would look like this:</p>
+
+<div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6
+7</pre></div><div class="highlight"><pre><span class="c">/* Loading message is hidden by default, only shown during loading */</span>
+<span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.state-loading</span> <span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c">/* Content and Header are hidden during loading */</span>
+<span class="nc">.state-loading</span> <span class="nf">#content</span><span class="o">,</span>
+<span class="nc">.state-loading</span> <span class="nf">#header</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<p>Since the page will always start in a loading state, we add the class of <code>loading</code> directly to the <code>&lt;body&gt;</code> element:</p>
+
+<div class='code-block code-lang-html'><div class='code-lines' style='display: none'><pre>1</pre></div><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;state-loading&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+
+<p>Finally, we delete almost all the code we had before, and just remove the <code>loading</code> class when loading is complete:</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2
+3
+4
+5
+6</pre></div><div class="highlight"><pre><span class="c1">// Lots of setup and async code here</span>
 
 <span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
     <span class="c1">// The app is loaded!</span>
-    <span class="nx">$body</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span> <span class="s2">&quot;loading&quot;</span> <span class="p">);</span>
+    <span class="nx">$</span><span class="p">(</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span> <span class="s2">&quot;state-loading&quot;</span> <span class="p">);</span>
 <span class="p">}</span> 
 </pre></div>
 </div>
 
-<p>We have replaced the selection of three elements with a single reference to <code>document.body</code>. And we replaced six separate interactions with the DOM with a single removal of a <code>loading</code> class from the <code>&lt;body&gt;</code> element.</p>
+<h3>Solution 2</h3>
 
-<h2>Reacting To Specific States</h2>
+<p>To adjust the visual display of a <strong>single item</strong>, follow these steps:</p>
 
-<p>You can combine these state classes with delegated events to write state specific code. Take the following code examples:</p>
+<ol>
+<li>Any aspect of the visual display that will not change should be defined as the element’s default display.</li>
+<li>Determine a good class name to describe the new visual state of the element, optionally add that class to the HTML for the element and then manipulate it by using jQuery’s class manipulation methods.</li>
+<li>Write CSS that scopes the new styles to the chosen element with the new class applied. You can also use multiple class syntax if you the element you are styling is already defined by a class: <code>.notification.ready</code> (Multiple class syntax is not supported by IE6 and lower).</li>
+</ol>
+
+<p>If we assume the default state of our notification display is <code>green</code>, we can use the following CSS:</p>
+
+<div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
+2</pre></div><div class="highlight"><pre><span class="nc">.notification</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">green</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.notification.state-error</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+
+<p>The following code will add the class of <code>state-error</code> when our variable <code>error</code> is true:</p>
+
+<div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
+2</pre></div><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$notification</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.notification&quot;</span> <span class="p">);</span>
+<span class="nx">$notification</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span> <span class="s2">&quot;state-error&quot;</span><span class="p">,</span> <span class="nx">error</span> <span class="p">);</span>
+</pre></div>
+</div>
+
+<h2>Strengths</h2>
+
+<ul>
+<li><strong>Speed</strong> – By strategically using classes instead of direct manipulation, you remove the need to find, then adjust multiple elements. Very little code is needed to add or remove a class, replaced potentially slow moving code (selectors and traversal) with extremely efficient code. By leaving the bulk of the changes up to the browser, you also capitalize on the speed of the browser’s CSS engine.</li>
+<li><strong>Separation of functionality and style</strong> – By only manipulating a class name, you leave the bulk of the visual definition in the CSS files – where they belong. In a team setting, this also allows a designer to modify the design without interacting with the JavaScript.</li>
+<li><strong>Self describing code</strong> – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity.</li>
+<li><strong>Scoped events with delegation</strong> – You can leverage these class names to automatically filter out unwanted event triggers based on state. Look at the following example for ideas:</li>
+</ul>
 
 <div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
 2
@@ -190,37 +245,55 @@ Filed in <strong>Strategy</strong> &bull; Published on <a title="Permalink" href
 8
 9
 10
-11</pre></div><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">)</span>
-    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> 
-        <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;body:not(.loading, .saving) button.save&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// perform the save, but not if we are still</span>
-        <span class="c1">// loading or in the middle of a save</span>
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">)</span>
+
+    <span class="c1">// perform the save, but not if we are still</span>
+    <span class="c1">// loading or in the middle of a save</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;body:not(.loading, .saving) button.save&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>        
+        <span class="p">...</span>
     <span class="p">})</span>
+
+    <span class="c1">// prevent forms from submitting</span>
+    <span class="c1">// if a save is in progress</span>
     <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="s2">&quot;body.saving&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// prevent forms from submitting</span>
-        <span class="c1">// if a save is in progress</span>
         <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">})</span>
+
+    <span class="c1">// only run the setup one time per element</span>
+    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;.widget:not(.widget-setup)&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="p">...</span>
+        <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">).</span><span class="nx">addClass</span><span class="p">(</span> <span class="s2">&quot;widget-setup&quot;</span> <span class="p">);</span>
     <span class="p">});</span>
 </pre></div>
 </div>
 
-<h2>Using Attributes instead of Classes</h2>
+<h2>Scribbles</h2>
 
-<p>With Internet Explorer 7+, you can also use attribute changes to control flow. For certain changes that are atomic, you could use a HTML5 data attribute.</p>
+<h3>Transitions</h3>
+
+<p>Often the move from one state to another is accompanied by some sort of animation. Since much of the time these transitions are visual finesse, I suggest using CSS3 transitions and animations to implement the transitions. The fallback in unsupported browsers will simply be an instant change from one state to the next. In situations where the animation is crucial to the interaction, you may not be able to leverage everything covered in this article.</p>
+
+<h3>Using Attributes instead of Classes</h3>
+
+<p>You can also use attribute changes to control flow, though I haven't done any speed comparisons between the two methods. Here is an example using a custom HTML5 data attribute named <code>data-state</code>:</p>
 
 <div class='code-block code-lang-html'><div class='code-lines' style='display: none'><pre>1</pre></div><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">data-state=</span><span class="s">&quot;loading&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 </div>
-
-<p>Use a different selector in the CSS:</p>
 
 <div class='code-block code-lang-css'><div class='code-lines' style='display: none'><pre>1
 2</pre></div><div class="highlight"><pre><span class="nt">body</span><span class="o">[</span><span class="nt">data-state</span><span class="o">=</span><span class="s2">&quot;loading&quot;</span><span class="o">]</span> <span class="nf">#loadingMessage</span><span class="o">,</span>
 <span class="nt">body</span><span class="o">[</span><span class="nt">data-state</span><span class="o">=</span><span class="s2">&quot;saving&quot;</span><span class="o">]</span> <span class="nf">#savingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 </div>
-
-<p>And then change that state with jQuery:</p>
 
 <div class='code-block code-lang-javascript'><div class='code-lines' style='display: none'><pre>1
 2
