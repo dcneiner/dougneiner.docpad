@@ -44,7 +44,6 @@ module.exports = (BasePlugin) ->
 			
 			finalize = () ->
 				document.body = document.body.replace rFormatBlocks, (a, b, lang, html) ->
-					console.log( processed[ 0 ] )
 					processed.shift()
 				next()
 	

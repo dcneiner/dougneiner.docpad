@@ -28,6 +28,36 @@ $l_purple =       #8959a8
 
 $main = $l_blue
 
+box-shadow() {
+	-webkit-box-shadow: arguments;
+	-moz-box-shadow: arguments;
+	box-shadow: arguments;
+}
+
+round( size ) {
+	-webkit-border-radius: size
+	-moz-border-radius: size
+	border-radius: size
+}
+
+round-top( size ) {
+	-webkit-border-top-left-radius: size
+	-webkit-border-top-right-radius: size
+	-moz-border-radius-topleft: size
+	-moz-border-radius-topright: size
+	border-top-left-radius: size
+	border-top-right-radius: size
+}
+
+round-bottom( size ) {
+	-webkit-border-bottom-left-radius: size
+	-webkit-border-bottom-right-radius: size
+	-moz-border-radius-bottomleft: size
+	-moz-border-radius-bottomright: size
+	border-bottom-left-radius: size
+	border-bottom-right-radius: size
+}
+
 pre {
 	margin: 0;
 	padding: 0;
@@ -217,32 +247,6 @@ body.sub-page > header:not(:hover) > a  h1 {
   background-image:        -o-linear-gradient(left, rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url("../img/bg-noise.png"); /* Opera 11.10+ */
   background-image:           linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.05)), url("../img/bg-noise.png");
 }
-
-box-shadow()
-	-webkit-box-shadow: arguments;
-	-moz-box-shadow: arguments;
-	box-shadow: arguments;
-
-round( size )
-	-webkit-border-radius: size
-	-moz-border-radius: size
-	border-radius: size
-
-round-top( size )
-	-webkit-border-top-left-radius: size
-	-webkit-border-top-right-radius: size
-	-moz-border-radius-topleft: size
-	-moz-border-radius-topright: size
-	border-top-left-radius: size
-	border-top-right-radius: size
-
-round-bottom( size )
-	-webkit-border-bottom-left-radius: size
-	-webkit-border-bottom-right-radius: size
-	-moz-border-radius-bottomleft: size
-	-moz-border-radius-bottomright: size
-	border-bottom-left-radius: size
-	border-bottom-right-radius: size
 
 .nameplate {
 	width: 202px;

@@ -11,3 +11,7 @@ AddOutputFilterByType DEFLATE text/html text/css application/x-javascript text/j
 	Header unset cache-control: 
 	Header append cache-control: "max-age=315360000"
 </FilesMatch>
+
+RewriteEngine on
+RewriteCond %{HTTP_USER_AGENT} !FeedBurner
+RewriteRule ^atom\.xml$ http://feeds.feedburner.com/dougneiner/code [R,L]

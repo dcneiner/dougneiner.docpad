@@ -3,13 +3,15 @@
     <title>Doug Neiner</title>
     <link href="http://code.dougneiner.com/atom.xml" rel="self"/>
     <link href="http://code.dougneiner.com"/>
-    <updated>2012-03-11T01:17:50Z</updated>
-    <id>http://code.dougneiner.com</id>
+    <updated>2012-03-11T04:15:52Z</updated>
+    <id>http://code.dougneiner.com/</id>
     <author>
         <name>Doug Neiner</name>
         <email>doug@dougneiner.com</email>
     </author>
 
+    
+        
     
         
     
@@ -23,184 +25,184 @@
                 
                 <updated>2012-02-27T05:34:55Z</updated>
                 <id>http://code.dougneiner.com/coding/using-css-classes-for-states.html</id>
-                <content type="html"><h2>Strategy</h2>
+                <content type="html">&lt;h2&gt;Strategy&lt;/h2&gt;
 
-<p>Instead of adjusting an HTML element's visual style with jQuery, make the same changes by strategically adding and removing classes. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.</p>
+&lt;p&gt;Instead of adjusting an HTML element's visual style with jQuery, make the same changes by strategically adding and removing classes. The classes can be applied on the component, region, and page level to control any static state of the host element or its decedents.&lt;/p&gt;
 
-<h2>Symptoms</h2>
+&lt;h2&gt;Symptoms&lt;/h2&gt;
 
-<p>You can easily detect when to use this strategy when you discover yourself performing any of the following actions:</p>
+&lt;p&gt;You can easily detect when to use this strategy when you discover yourself performing any of the following actions:&lt;/p&gt;
 
-<ul>
-<li><p>You show, hide, or otherwise visually adjust two or more elements at the same time. The higher the number of elements changed, the greater the need for this strategy.</p></li>
-<li><p>You need to run any number of jQuery selections via <code>$( selector )</code>, <code>.find()</code>, etc, just to adjust the visual display of those elements.</p></li>
-<li><p>You use jQuery’s <a href="http://api.jquery.com/css"><code>.css()</code></a> method to change an element from one visual appearance to another predetermined appearance.</p></li>
-</ul>
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;You show, hide, or otherwise visually adjust two or more elements at the same time. The higher the number of elements changed, the greater the need for this strategy.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You need to run any number of jQuery selections via &lt;code&gt;$( selector )&lt;/code&gt;, &lt;code&gt;.find()&lt;/code&gt;, etc, just to adjust the visual display of those elements.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;You use jQuery’s &lt;a href=&quot;http://api.jquery.com/css&quot;&gt;&lt;code&gt;.css()&lt;/code&gt;&lt;/a&gt; method to change an element from one visual appearance to another predetermined appearance.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-<h3>Problem 1</h3>
+&lt;h3&gt;Problem 1&lt;/h3&gt;
 
-<p>The following code illustrates the first two of these symptoms:</p>
+&lt;p&gt;The following code illustrates the first two of these symptoms:&lt;/p&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Three separate elements are selected</span>
-    <span class="kd">var</span> <span class="nx">loadingMessage</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#loadingMessage&quot;</span> <span class="p">),</span>
-        <span class="nx">header</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#header&quot;</span> <span class="p">),</span>
-        <span class="nx">content</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#content&quot;</span> <span class="p">);</span>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ready&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Three separate elements are selected&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;loadingMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#loadingMessage&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#header&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;#content&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
-    <span class="c1">// Three CSS changes are made:</span>
-    <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-    <span class="nx">header</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="nx">content</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+    &lt;span class=&quot;c1&quot;&gt;// Three CSS changes are made:&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;loadingMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
 
-    <span class="c1">// Lots of setup and async code here</span>
+    &lt;span class=&quot;c1&quot;&gt;// Lots of setup and async code here&lt;/span&gt;
 
-    <span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="c1">// Three additional CSS changes are made</span>
-        <span class="nx">loadingMessage</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
-        <span class="nx">header</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-        <span class="nx">content</span><span class="p">.</span><span class="nx">show</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-</div>
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;someReadyCallback&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Three additional CSS changes are made&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;loadingMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hide&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<h3>Problem 2</h3>
+&lt;h3&gt;Problem 2&lt;/h3&gt;
 
-<p>This short example illustrates the third symptom:</p>
+&lt;p&gt;This short example illustrates the third symptom:&lt;/p&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$notification</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.notification&quot;</span> <span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span> <span class="nx">error</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$notification</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span> <span class="p">);</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">$notification</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span> <span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span> <span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$notification&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;.notification&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;red&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;color&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;green&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<h2>Solutions</h2>
+&lt;h2&gt;Solutions&lt;/h2&gt;
 
-<h3>Solution 1</h3>
+&lt;h3&gt;Solution 1&lt;/h3&gt;
 
-<p>To visually adjust <strong>multiple items</strong> at the same time, follow these steps:</p>
+&lt;p&gt;To visually adjust &lt;strong&gt;multiple items&lt;/strong&gt; at the same time, follow these steps:&lt;/p&gt;
 
-<ol>
-<li>Find a parent element that is shared by the elements you wish to adjust. Often you can use the <code>html</code> or <code>body</code> element, but it can be any element that contains all the target elements.</li>
-<li>Determine a good CSS class name to describe the <em>combined</em> visual state of the elements, optionally add that class to the HTML and then manipulate it by using jQuery’s <a href="http://api.jquery.com/addClass"><code>addClass</code></a>, <a href="http://api.jquery.com/removeClass"><code>removeClass</code></a> and <a href="http://api.jquery.com/toggleClass"><code>toggleClass</code></a> methods. Prefixing these classes with <code>state-</code> is one way to signify their purpose.</li>
-<li>Write CSS that scopes selections using a combination of the chosen parent element and the new class that is being applied to it.</li>
-</ol>
+&lt;ol&gt;
+&lt;li&gt;Find a parent element that is shared by the elements you wish to adjust. Often you can use the &lt;code&gt;html&lt;/code&gt; or &lt;code&gt;body&lt;/code&gt; element, but it can be any element that contains all the target elements.&lt;/li&gt;
+&lt;li&gt;Determine a good CSS class name to describe the &lt;em&gt;combined&lt;/em&gt; visual state of the elements, optionally add that class to the HTML and then manipulate it by using jQuery’s &lt;a href=&quot;http://api.jquery.com/addClass&quot;&gt;&lt;code&gt;addClass&lt;/code&gt;&lt;/a&gt;, &lt;a href=&quot;http://api.jquery.com/removeClass&quot;&gt;&lt;code&gt;removeClass&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://api.jquery.com/toggleClass&quot;&gt;&lt;code&gt;toggleClass&lt;/code&gt;&lt;/a&gt; methods. Prefixing these classes with &lt;code&gt;state-&lt;/code&gt; is one way to signify their purpose.&lt;/li&gt;
+&lt;li&gt;Write CSS that scopes selections using a combination of the chosen parent element and the new class that is being applied to it.&lt;/li&gt;
+&lt;/ol&gt;
 
-<p>The CSS to fix our <code>loadingMessage</code> code would look like this:</p>
+&lt;p&gt;The CSS to fix our &lt;code&gt;loadingMessage&lt;/code&gt; code would look like this:&lt;/p&gt;
 
-<div class='code-block code-lang-css'><div class="highlight"><pre><span class="c">/* Loading message is hidden by default, only shown during loading */</span>
-<span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.state-loading</span> <span class="nf">#loadingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
+&lt;div class='code-block code-lang-css'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;/* Loading message is hidden by default, only shown during loading */&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;#loadingMessage&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.state-loading&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#loadingMessage&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
-<span class="c">/* Content and Header are hidden during loading */</span>
-<span class="nc">.state-loading</span> <span class="nf">#content</span><span class="o">,</span>
-<span class="nc">.state-loading</span> <span class="nf">#header</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-</div>
+&lt;span class=&quot;c&quot;&gt;/* Content and Header are hidden during loading */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.state-loading&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#content&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.state-loading&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#header&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<p>Since the page will always start in a loading state, we add the class of <code>loading</code> directly to the <code>&lt;body&gt;</code> element:</p>
+&lt;p&gt;Since the page will always start in a loading state, we add the class of &lt;code&gt;loading&lt;/code&gt; directly to the &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; element:&lt;/p&gt;
 
-<div class='code-block code-lang-html'><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;state-loading&quot;</span><span class="nt">&gt;</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-html'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;state-loading&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<p>Finally, we delete almost all the code we had before, and just remove the <code>loading</code> class when loading is complete:</p>
+&lt;p&gt;Finally, we delete almost all the code we had before, and just remove the &lt;code&gt;loading&lt;/code&gt; class when loading is complete:&lt;/p&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="c1">// Lots of setup and async code here</span>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;// Lots of setup and async code here&lt;/span&gt;
 
-<span class="kd">function</span> <span class="nx">someReadyCallback</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// The app is loaded!</span>
-    <span class="nx">$</span><span class="p">(</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span> <span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span> <span class="s2">&quot;state-loading&quot;</span> <span class="p">);</span>
-<span class="p">}</span> 
-</pre></div>
-</div>
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;someReadyCallback&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// The app is loaded!&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;state-loading&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<h3>Solution 2</h3>
+&lt;h3&gt;Solution 2&lt;/h3&gt;
 
-<p>To adjust the visual display of a <strong>single item</strong>, follow these steps:</p>
+&lt;p&gt;To adjust the visual display of a &lt;strong&gt;single item&lt;/strong&gt;, follow these steps:&lt;/p&gt;
 
-<ol>
-<li>Any aspect of the visual display that will not change should be defined as the element’s default display.</li>
-<li>Determine a good class name to describe the new visual state of the element, optionally add that class to the HTML for the element and then manipulate it by using jQuery’s class manipulation methods.</li>
-<li>Write CSS that scopes the new styles to the chosen element with the new class applied. You can also use multiple class syntax if you the element you are styling is already defined by a class: <code>.notification.ready</code> (Multiple class syntax is not supported by IE6 and lower).</li>
-</ol>
+&lt;ol&gt;
+&lt;li&gt;Any aspect of the visual display that will not change should be defined as the element’s default display.&lt;/li&gt;
+&lt;li&gt;Determine a good class name to describe the new visual state of the element, optionally add that class to the HTML for the element and then manipulate it by using jQuery’s class manipulation methods.&lt;/li&gt;
+&lt;li&gt;Write CSS that scopes the new styles to the chosen element with the new class applied. You can also use multiple class syntax if you the element you are styling is already defined by a class: &lt;code&gt;.notification.ready&lt;/code&gt; (Multiple class syntax is not supported by IE6 and lower).&lt;/li&gt;
+&lt;/ol&gt;
 
-<p>If we assume the default state of our notification display is <code>green</code>, we can use the following CSS:</p>
+&lt;p&gt;If we assume the default state of our notification display is &lt;code&gt;green&lt;/code&gt;, we can use the following CSS:&lt;/p&gt;
 
-<div class='code-block code-lang-css'><div class="highlight"><pre><span class="nc">.notification</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">green</span><span class="p">;</span> <span class="p">}</span>
-<span class="nc">.notification.state-error</span> <span class="p">{</span> <span class="k">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-css'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;.notification&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;green&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.notification.state-error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;red&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<p>The following code will add the class of <code>state-error</code> when our variable <code>error</code> is true:</p>
+&lt;p&gt;The following code will add the class of &lt;code&gt;state-error&lt;/code&gt; when our variable &lt;code&gt;error&lt;/code&gt; is true:&lt;/p&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="kd">var</span> <span class="nx">$notification</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;.notification&quot;</span> <span class="p">);</span>
-<span class="nx">$notification</span><span class="p">.</span><span class="nx">toggleClass</span><span class="p">(</span> <span class="s2">&quot;state-error&quot;</span><span class="p">,</span> <span class="nx">error</span> <span class="p">);</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$notification&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;.notification&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toggleClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;state-error&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<h2>Strengths</h2>
+&lt;h2&gt;Strengths&lt;/h2&gt;
 
-<ul>
-<li><strong>Speed</strong> – By strategically using classes instead of direct manipulation, you remove the need to find, then adjust multiple elements. Very little code is needed to add or remove a class, replaced potentially slow moving code (selectors and traversal) with extremely efficient code. By leaving the bulk of the changes up to the browser, you also capitalize on the speed of the browser’s CSS engine.</li>
-<li><strong>Separation of functionality and style</strong> – By only manipulating a class name, you leave the bulk of the visual definition in the CSS files – where they belong. In a team setting, this also allows a designer to modify the design without interacting with the JavaScript.</li>
-<li><strong>Self describing code</strong> – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity (For a caveat to this point, see the note about <a href="#education">Education</a> at the end of this post)</li>
-<li><strong>Scoped events with delegation</strong> – You can leverage these class names to automatically filter out unwanted event triggers based on state. Look at the following example for ideas:</li>
-</ul>
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Speed&lt;/strong&gt; – By strategically using classes instead of direct manipulation, you remove the need to find, then adjust multiple elements. Very little code is needed to add or remove a class, replaced potentially slow moving code (selectors and traversal) with extremely efficient code. By leaving the bulk of the changes up to the browser, you also capitalize on the speed of the browser’s CSS engine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Separation of functionality and style&lt;/strong&gt; – By only manipulating a class name, you leave the bulk of the visual definition in the CSS files – where they belong. In a team setting, this also allows a designer to modify the design without interacting with the JavaScript.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Self describing code&lt;/strong&gt; – If the class names you choose are descriptive, then where they are added and removed is afforded an immediate increased in clarity (For a caveat to this point, see the note about &lt;a href=&quot;#education&quot;&gt;Education&lt;/a&gt; at the end of this post)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scoped events with delegation&lt;/strong&gt; – You can leverage these class names to automatically filter out unwanted event triggers based on state. Look at the following example for ideas:&lt;/li&gt;
+&lt;/ul&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">)</span>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-    <span class="c1">// perform the save, but not if we are still</span>
-    <span class="c1">// loading or in the middle of a save</span>
-    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;body:not(.loading, .saving) button.save&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>        
-        <span class="p">...</span>
-    <span class="p">})</span>
+    &lt;span class=&quot;c1&quot;&gt;// perform the save, but not if we are still&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// loading or in the middle of a save&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;click&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;body:not(.loading, .saving) button.save&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;        
+        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
 
-    <span class="c1">// prevent forms from submitting</span>
-    <span class="c1">// if a save is in progress</span>
-    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;submit&quot;</span><span class="p">,</span> <span class="s2">&quot;body.saving&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">e</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
-    <span class="p">})</span>
+    &lt;span class=&quot;c1&quot;&gt;// prevent forms from submitting&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if a save is in progress&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;submit&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;body.saving&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
 
-    <span class="c1">// only run the setup one time per element</span>
-    <span class="p">.</span><span class="nx">on</span><span class="p">(</span> <span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="s2">&quot;.widget:not(.widget-setup)&quot;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="p">...</span>
-        <span class="nx">$</span><span class="p">(</span> <span class="k">this</span> <span class="p">).</span><span class="nx">addClass</span><span class="p">(</span> <span class="s2">&quot;widget-setup&quot;</span> <span class="p">);</span>
-    <span class="p">});</span>
-</pre></div>
-</div>
+    &lt;span class=&quot;c1&quot;&gt;// only run the setup one time per element&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;click&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;.widget:not(.widget-setup)&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;widget-setup&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<h2>Notes</h2>
+&lt;h2&gt;Notes&lt;/h2&gt;
 
-<h3>Transitions</h3>
+&lt;h3&gt;Transitions&lt;/h3&gt;
 
-<p>Often the move from one state to another is accompanied by some sort of animation. Since much of the time these transitions are visual finesse, I suggest using CSS3 transitions and animations to implement the transitions. The fallback in unsupported browsers will simply be an instant change from one state to the next. In situations where the animation is crucial to the interaction, you may not be able to leverage everything covered in this article.</p>
+&lt;p&gt;Often the move from one state to another is accompanied by some sort of animation. Since much of the time these transitions are visual finesse, I suggest using CSS3 transitions and animations to implement the transitions. The fallback in unsupported browsers will simply be an instant change from one state to the next. In situations where the animation is crucial to the interaction, you may not be able to leverage everything covered in this article.&lt;/p&gt;
 
-<h3>Using Attributes instead of Classes</h3>
+&lt;h3&gt;Using Attributes instead of Classes&lt;/h3&gt;
 
-<p>You can also use attribute changes to control flow, though I haven't done any speed comparisons between the two methods. Here is an example using a custom HTML5 data attribute named <code>data-state</code>:</p>
+&lt;p&gt;You can also use attribute changes to control flow, though I haven't done any speed comparisons between the two methods. Here is an example using a custom HTML5 data attribute named &lt;code&gt;data-state&lt;/code&gt;:&lt;/p&gt;
 
-<div class='code-block code-lang-html'><div class="highlight"><pre><span class="nt">&lt;body</span> <span class="na">data-state=</span><span class="s">&quot;loading&quot;</span><span class="nt">&gt;</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-html'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;data-state=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;loading&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<div class='code-block code-lang-css'><div class="highlight"><pre><span class="nt">body</span><span class="o">[</span><span class="nt">data-state</span><span class="o">=</span><span class="s2">&quot;loading&quot;</span><span class="o">]</span> <span class="nf">#loadingMessage</span><span class="o">,</span>
-<span class="nt">body</span><span class="o">[</span><span class="nt">data-state</span><span class="o">=</span><span class="s2">&quot;saving&quot;</span><span class="o">]</span> <span class="nf">#savingMessage</span> <span class="p">{</span> <span class="k">display</span><span class="o">:</span> <span class="k">block</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-css'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;data-state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;loading&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#loadingMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;data-state&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;saving&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;#savingMessage&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;block&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="nx">$body</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;ready&quot;</span> <span class="p">);</span> <span class="c1">// From loading to ready</span>
-<span class="c1">// ... other code ...</span>
-<span class="nx">$body</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span> <span class="s2">&quot;saving&quot;</span> <span class="p">);</span> <span class="c1">// Switch to saving</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nx&quot;&gt;$body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ready&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// From loading to ready&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// ... other code ...&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;state&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;saving&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Switch to saving&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<h3 id="education">Education</h3>
+&lt;h3 id=&quot;education&quot;&gt;Education&lt;/h3&gt;
 
-<p>If you work in a team environment, it would be wise to discuss this strategy with your team before implementing. JavaScript developers who do not work with CSS frequently may not understand the ramifications of the <code>addClass</code> and <code>removeClass</code> methods throughout your code.</p>
+&lt;p&gt;If you work in a team environment, it would be wise to discuss this strategy with your team before implementing. JavaScript developers who do not work with CSS frequently may not understand the ramifications of the &lt;code&gt;addClass&lt;/code&gt; and &lt;code&gt;removeClass&lt;/code&gt; methods throughout your code.&lt;/p&gt;
                 
                 </content>
             </entry>
@@ -220,9 +222,9 @@
                 
                 <updated>2012-02-18T20:42:09Z</updated>
                 <id>http://code.dougneiner.com/learning/essential-javascript-design-patterns.html</id>
-                <content type="html"><p>I really enjoyed Addy's presentation at the jQuery UK Conference where he touched on just a few patterns mentioned in this free online book. I haven't read through it yet, but I am super excited to learn more about some of these patterns. I think I will also find out the names for a number of the patterns I already use!</p>
+                <content type="html">&lt;p&gt;I really enjoyed Addy's presentation at the jQuery UK Conference where he touched on just a few patterns mentioned in this free online book. I haven't read through it yet, but I am super excited to learn more about some of these patterns. I think I will also find out the names for a number of the patterns I already use!&lt;/p&gt;
                 
-                    <p><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">View Link &#8594;</a></p>
+                    &lt;p&gt;&lt;a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/"&gt;View Link &#8594;&lt;/a&gt;&lt;/p&gt;
                 
                 </content>
             </entry>
@@ -242,22 +244,22 @@
                 
                 <updated>2010-09-20T05:00:00Z</updated>
                 <id>http://code.dougneiner.com/coding/stop-using-return-false.html</id>
-                <content type="html"><p>Probably one of the first topics covered when you get started learning about jQuery events is the concept of canceling the browser’s default behavior. For instance, a beginner click tutorial may include this:</p>
+                <content type="html">&lt;p&gt;Probably one of the first topics covered when you get started learning about jQuery events is the concept of canceling the browser’s default behavior. For instance, a beginner click tutorial may include this:&lt;/p&gt;
 
-<div class='code-block code-lang-javascript'><div class="highlight"><pre><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;a.toggle&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#mydiv&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Prevent browser from visiting `#`</span>
-<span class="p">});</span>
-</pre></div>
-</div>
+&lt;div class='code-block code-lang-javascript'&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;a.toggle&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;#mydiv&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toggle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Prevent browser from visiting `#`&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
-<p>This function toggles the hiding and displaying of <code>#mydiv</code>, then cancels the browser’s default behavior of visiting the href of the anchor tag.</p>
+&lt;p&gt;This function toggles the hiding and displaying of &lt;code&gt;#mydiv&lt;/code&gt;, then cancels the browser’s default behavior of visiting the href of the anchor tag.&lt;/p&gt;
 
-<p>It is in these very first examples that bad habits are formed as users continue to use <code>return false;</code> whenever they want to cancel the default browser action. I am going to cover two very important topics in this article relating to the canceling of browser events.</p>
+&lt;p&gt;It is in these very first examples that bad habits are formed as users continue to use &lt;code&gt;return false;&lt;/code&gt; whenever they want to cancel the default browser action. I am going to cover two very important topics in this article relating to the canceling of browser events.&lt;/p&gt;
 
-<p><a href="http://fuelyourcoding.com/jquery-events-stop-misusing-return-false/">Continue reading at Fuel Your Coding…</a></p>
+&lt;p&gt;&lt;a href=&quot;http://fuelyourcoding.com/jquery-events-stop-misusing-return-false/&quot;&gt;Continue reading at Fuel Your Coding…&lt;/a&gt;&lt;/p&gt;
 
-<p><em>This article was written for and published at Fuel Your Coding, on September 20, 2010. The material covered still applies to jQuery code written today.</em></p>
+&lt;p&gt;&lt;em&gt;This article was written for and published at Fuel Your Coding, on September 20, 2010. The material covered still applies to jQuery code written today.&lt;/em&gt;&lt;/p&gt;
                 
                 </content>
             </entry>
@@ -271,11 +273,11 @@
                 
                 <updated>2010-05-21T05:00:00Z</updated>
                 <id>http://code.dougneiner.com/coding/introduction-to-stateful-widgets.html</id>
-                <content type="html"><p>The jQuery UI Widget Factory is a separate component of the <a href="http://jqueryui.com">jQuery UI</a> Library that provides an easy, object oriented way to create stateful jQuery plugins. Plugins created using the Widget Factory can be simple or very robust as evidenced by the official jQuery UI widgets, each of which are built on top of the Widget Factory. This article will first look briefly at why you might want to use the Widget Factory, then present an in depth walkthrough of creating a stateful plugin using the Factory.</p>
+                <content type="html">&lt;p&gt;The jQuery UI Widget Factory is a separate component of the &lt;a href=&quot;http://jqueryui.com&quot;&gt;jQuery UI&lt;/a&gt; Library that provides an easy, object oriented way to create stateful jQuery plugins. Plugins created using the Widget Factory can be simple or very robust as evidenced by the official jQuery UI widgets, each of which are built on top of the Widget Factory. This article will first look briefly at why you might want to use the Widget Factory, then present an in depth walkthrough of creating a stateful plugin using the Factory.&lt;/p&gt;
 
-<p><a href="http://msdn.microsoft.com/en-us/scriptjunkie/ff706600.aspx">Continue reading at Script Junkie…</a></p>
+&lt;p&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/scriptjunkie/ff706600.aspx&quot;&gt;Continue reading at Script Junkie…&lt;/a&gt;&lt;/p&gt;
 
-<p><em>This article was written for and published at Script Junkie, on May 21, 2010. This article is current for jQuery UI 1.8, though 1.9 will bring a number of changes when released.</em></p>
+&lt;p&gt;&lt;em&gt;This article was written for and published at Script Junkie, on May 21, 2010. This article is current for jQuery UI 1.8, though 1.9 will bring a number of changes when released.&lt;/em&gt;&lt;/p&gt;
                 
                 </content>
             </entry>

@@ -4,7 +4,7 @@
 	<link href="http://code.dougneiner.com/atom.xml" rel="self"/>
 	<link href="http://code.dougneiner.com"/>
 	<updated><%= @site.date.toIsoDateString() %></updated>
-	<id>http://code.dougneiner.com</id>
+	<id>http://code.dougneiner.com/</id>
 	<author>
 		<name>Doug Neiner</name>
 		<email>doug@dougneiner.com</email>
@@ -21,9 +21,9 @@
 				<% end %>
 				<updated><%= document.date.toIsoDateString() %></updated>
 				<id>http://code.dougneiner.com<%= document.url %></id>
-				<content type="html"><%- (document.contentRenderedWithoutLayouts || "").replace( /<div class='code-lines'[\s\S]+?<\/div>/g, '') %>
+				<content type="html"><%= (document.contentRenderedWithoutLayouts || "").replace( /<div class='code-lines'[\s\S]+?<\/div>/g, '') %>
 				<% if document.link: %>
-					<p><a href="<%= document.link %>">View Link &#8594;</a></p>
+					&lt;p&gt;&lt;a href="<%= document.link %>"&gt;View Link &#8594;&lt;/a&gt;&lt;/p&gt;
 				<% end %>
 				</content>
 			</entry>
