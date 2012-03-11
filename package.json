@@ -21,7 +21,7 @@
 		},
 		"plugins": {
 			"coffee": {
-				"pygments": true
+				"dnpygments": true
 			}
 		}
 	}

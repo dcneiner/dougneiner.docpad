@@ -23,7 +23,7 @@
 				<id>http://code.dougneiner.com<%= document.url %></id>
 				<content type="html"><%- (document.contentRenderedWithoutLayouts || "").replace( /<div class='code-lines'[\s\S]+?<\/div>/g, '') %>
 				<% if document.link: %>
-					<p><a href="<%= document.link %>">View Link &rarr;</a></p>
+					<p><a href="<%= document.link %>">View Link &#8594;</a></p>
 				<% end %>
 				</content>
 			</entry>

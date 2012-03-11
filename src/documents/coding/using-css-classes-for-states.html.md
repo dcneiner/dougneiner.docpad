@@ -2,6 +2,7 @@
 layout: post
 title: Using CSS Classes with jQuery to Control Visual State
 category: Strategy
+date: 1330320895000
 excerpt: Instead of showing, hiding, and otherwise adjusting an HTML element's visual display with jQuery, execute the same level of change by strategically adding and removing classes with jQuery/JavaScript.
 ---
 

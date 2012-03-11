@@ -3,7 +3,7 @@
     <title>Doug Neiner</title>
     <link href="http://code.dougneiner.com/atom.xml" rel="self"/>
     <link href="http://code.dougneiner.com"/>
-    <updated>2012-02-27T20:00:16Z</updated>
+    <updated>2012-03-11T01:17:50Z</updated>
     <id>http://code.dougneiner.com</id>
     <author>
         <name>Doug Neiner</name>
@@ -222,7 +222,7 @@
                 <id>http://code.dougneiner.com/learning/essential-javascript-design-patterns.html</id>
                 <content type="html"><p>I really enjoyed Addy's presentation at the jQuery UK Conference where he touched on just a few patterns mentioned in this free online book. I haven't read through it yet, but I am super excited to learn more about some of these patterns. I think I will also find out the names for a number of the patterns I already use!</p>
                 
-                    <p><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">View Link &rarr;</a></p>
+                    <p><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">View Link &#8594;</a></p>
                 
                 </content>
             </entry>
